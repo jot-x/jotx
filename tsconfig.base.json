@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+      "lib": ["ESNext"],
+      "strict": true,
+      "strictNullChecks": true,
+      "noUnusedLocals": true,
+      "rootDir": "src"
+    }
+}

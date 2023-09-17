@@ -1,0 +1,13 @@
+{
+  "name": "@jotx/core",
+  "version": "0.0.1",
+  "description": "Core facilities of jotx",
+  "main": "src/index.js",
+  "keywords": [
+    "notes",
+    "note-taking",
+    "collaboration"
+  ],
+  "author": "Indexia Technologies.",
+  "license": "BSL"
+}
