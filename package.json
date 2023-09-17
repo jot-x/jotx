@@ -2,7 +2,6 @@
   "name": "jotx",
   "version": "0.0.1",
   "description": "Open note-taking platform, using the power of git to sync across devices, track changes and resolve conflicts.",
-  "main": "index.js",
   "keywords": [
     "notes",
     "note-taking",

@@ -1,0 +1,20 @@
+{
+  "name": "@jotx/git",
+  "version": "0.0.1",
+  "description": "git impementation of jotx versioning API",
+  "main": "src/index.js",
+  "keywords": [
+    "notes",
+    "note-taking",
+    "collaboration"
+  ],
+  "author": "Indexia Technologies.",
+  "license": "BSL",
+  "dependencies": {
+    "@jotx/core": "workspace:*",
+    "isomorphic-git": "^1.24.5"
+  },
+  "devDependencies": {
+    "memfs": "^4.3.0"
+  }
+}
