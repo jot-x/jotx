@@ -1,0 +1,20 @@
+{
+  "name": "@jotx/browserfs",
+  "version": "0.0.1",
+  "description": "BrowserFS implementation of store API",
+  "main": "src/index.js",
+  "keywords": [
+    "notes",
+    "note-taking",
+    "collaboration"
+  ],
+  "author": "Indexia Technologies.",
+  "license": "BSL",
+  "dependencies": {
+    "@jotx/core": "workspace:*",
+    "browserfs": "^1.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.6.2"
+  }
+}
