@@ -7,6 +7,9 @@
     "note-taking",
     "collaboration"
   ],
+  "scripts": {
+    "test": "vitest"
+  },
   "author": "Indexia Technologies.",
   "license": "BSL",
   "devDependencies": {
