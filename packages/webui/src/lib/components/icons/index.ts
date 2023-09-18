@@ -1,4 +1,4 @@
-export { default as IconGitHub } from './IconGitHub.svelte';
+export { default as IconGitHub } from './IconGithub.svelte';
 export { default as IconLeft } from './IconLeft.svelte';
 export { default as IconList } from './IconList.svelte';
 export { default as IconLogo } from './IconLogo.svelte';
