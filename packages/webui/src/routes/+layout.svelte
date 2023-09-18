@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import '../app.postcss';
 	import { userStore } from '$lib/auth/store';
+	import { goto } from '$app/navigation';
 
 	onMount(() => {
 		if ($page.data.idToken && $userStore?.id !== $page.data.idToken.sub) {
@@ -11,6 +12,12 @@
 				id: tok.sub,
 				notebooks: []
 			};
+		}
+
+		if ($userStore) {
+			if (!$userStore.notebooks.length) {
+				goto('/setup');
+			}
 		}
 	});
 </script>
