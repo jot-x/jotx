@@ -1,5 +1,18 @@
 <script lang="ts">
+	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 	import '../app.postcss';
+	import { userStore } from '$lib/auth/store';
+
+	onMount(() => {
+		if ($page.data.idToken && $userStore?.id !== $page.data.idToken.sub) {
+			const tok = $page.data.idToken;
+			$userStore = {
+				id: tok.sub,
+				notebooks: []
+			};
+		}
+	});
 </script>
 
 <svelte:head>
