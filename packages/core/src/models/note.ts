@@ -3,13 +3,19 @@ import { Doc } from './doc';
 /**
  * Note's heading details.
  *
- * When note is written in MArkdown, this corresponds to the Frontmatter section.
+ * When note is written in Markdown, this corresponds to the Frontmatter section.
  */
 export interface NoteHeader {
   /**
    * Classifies notes by primitive strings.
    */
   tags: string[];
+  /**
+   * The title of the note
+   *
+   * If not defined in frontmatter, when notes stored in files, this can be the file name.
+   */
+  title?: string;
 }
 
 /**

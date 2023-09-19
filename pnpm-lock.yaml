@@ -33,6 +33,19 @@ importers:
 
   packages/core: {}
 
+  packages/fs:
+    dependencies:
+      '@jotx/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      '@types/node':
+        specifier: ^20.6.2
+        version: 20.6.2
+      memfs:
+        specifier: ^4.3.0
+        version: 4.3.0(quill-delta@5.1.0)(rxjs@7.8.1)(tslib@2.6.2)
+
   packages/git:
     dependencies:
       '@jotx/core':
@@ -64,6 +77,9 @@ importers:
       '@jotx/core':
         specifier: workspace:*
         version: link:../core
+      '@jotx/fs':
+        specifier: workspace:*
+        version: link:../fs
       '@jotx/git':
         specifier: workspace:*
         version: link:../git
@@ -98,6 +114,9 @@ importers:
       '@types/debug':
         specifier: ^4.1.8
         version: 4.1.8
+      '@types/js-yaml':
+        specifier: ^4.0.6
+        version: 4.0.6
       '@typescript-eslint/eslint-plugin':
         specifier: ^6.0.0
         version: 6.7.2(@typescript-eslint/parser@6.7.2)(eslint@8.49.0)(typescript@5.2.2)
@@ -122,6 +141,9 @@ importers:
       eslint-plugin-svelte:
         specifier: ^2.30.0
         version: 2.33.2(eslint@8.49.0)(svelte@4.2.0)(ts-node@10.9.1)
+      js-yaml:
+        specifier: ^4.1.0
+        version: 4.1.0
       nanoid:
         specifier: ^5.0.1
         version: 5.0.1
@@ -662,6 +684,10 @@ packages:
 
   /@types/estree@1.0.1:
     resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
+
+  /@types/js-yaml@4.0.6:
+    resolution: {integrity: sha512-ACTuifTSIIbyksx2HTon3aFtCKWcID7/h3XEmRpDYdMCXxPbl+m9GteOJeaAkiAta/NJaSFuA7ahZ0NkwajDSw==}
+    dev: true
 
   /@types/json-schema@7.0.13:
     resolution: {integrity: sha512-RbSSoHliUbnXj3ny0CNFOoxrIDV6SUGyStHsvDqosw6CkdPV8TtWGlfecuK4ToyMEAql6pzNxgCFKanovUzlgQ==}

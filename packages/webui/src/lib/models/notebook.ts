@@ -3,7 +3,7 @@ import type { GitPlatformType } from './git-platform';
 export interface NotebookConfig {
 	name: string;
 	title?: string;
-	git_remote: UserGitPlatform;
+	git_remote?: UserGitPlatform;
 }
 
 export interface UserGitPlatform {

@@ -52,7 +52,6 @@ export const auth = {
 		const token = encodeJWT(idtoken);
 		const resp = await this.createSession({ token, cookies });
 		if (resp.isErr()) return err(resp.error);
-		console.log(resp.value);
 		return okAsync({ decoded_id_token: idtoken, token });
 	}
 };

@@ -12,7 +12,7 @@
 	onMount(async () => {});
 
 	async function onCreate(e: ButtonEventHandler<MouseEvent>) {
-		const { createNotebook } = await import('$lib/api/create');
+		const { createNotebook } = await import('$lib/api');
 		const resp = await createNotebook(name);
 		if (resp.isErr()) {
 			console.error(resp.error);

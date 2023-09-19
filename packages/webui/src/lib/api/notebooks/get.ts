@@ -1,9 +1,9 @@
 import type { NotebookConfig } from '$lib/models/notebook';
-import { contentAsString } from '@jotx/lightningfs/src/util';
 import { okAsync, fromPromise, err } from 'neverthrow';
-import { getNBFS } from './setup';
-import { notebookConfigPath } from './utils';
+import { getNBFS } from '../setup';
+import { notebookConfigPath } from '../utils';
 import { error } from '@sveltejs/kit';
+import { asString } from '@jotx/fs';
 
 export async function getNotebook(name: string) {
 	const [nbfs] = getNBFS();
@@ -12,7 +12,7 @@ export async function getNotebook(name: string) {
 	);
 	if (data.isErr()) return err(data.error);
 
-	return okAsync(JSON.parse(contentAsString(data.value)) as NotebookConfig);
+	return okAsync(JSON.parse(asString(data.value)) as NotebookConfig);
 }
 
 function createError(err: Error) {

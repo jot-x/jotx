@@ -1,5 +1,5 @@
 export { Doc, Note } from './models';
-export { DocStore, ListOpts, ListResult } from './store';
+export { DocStore, ListOpts, ListResult, Encoder, Decoder } from './store';
 export { DocsVersionControl } from './versioning/local';
 export { DocsRemoteVersionControl } from './versioning/remote';
 export { FetchResult } from './versioning/models/fetch-result';

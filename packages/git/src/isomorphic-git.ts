@@ -54,9 +54,7 @@ export class GitVersioning implements DocsVersionControl, DocsRemoteVersionContr
     if (!this.httpClient) {
       throw new Error('http client is required');
     }
-    await clone({ fs: this.fs, dir: this.dir, http: this.httpClient, url, depth }).then(
-      console.log
-    );
+    await clone({ fs: this.fs, dir: this.dir, http: this.httpClient, url, depth });
     return;
   }
   fetch(): Promise<FetchResult> {

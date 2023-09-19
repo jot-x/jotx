@@ -1,5 +1,4 @@
-import type { NotebookConfig } from '$lib/models/notebook';
-import type { PromisifiedFS } from '@isomorphic-git/lightning-fs';
+import type { Note } from '@jotx/core';
 
 export const NOTEBOOK_PATH_PREFIX = '/notebooks';
 export const NOTEBOOK_INTERNAL_FOLDER = '.jotx';
@@ -23,4 +22,45 @@ export function contentToString(content: string | Uint8Array): string {
 	}
 
 	return new TextDecoder().decode(content);
+}
+
+export function noteName(notebookName: string, noteName: string, opts?: { noSuffix: boolean }) {
+	const name = `${notebookPath(notebookName)}/${noteName}`;
+	if (opts && opts.noSuffix) {
+		return name;
+	}
+
+	return name + '.md';
+}
+
+export function newNote({
+	notebookName,
+	name,
+	content = '',
+	tags
+}: {
+	notebookName: string;
+	name: string;
+	content?: string;
+	tags?: string[];
+}): Note {
+	const path = noteName(notebookName, name);
+	const now = new Date();
+	const note: Note = {
+		content,
+
+		meta: {
+			created: now,
+			updated: now,
+			path
+		}
+	};
+
+	if (tags) {
+		note.header = {
+			tags
+		};
+	}
+
+	return note;
 }

@@ -27,5 +27,5 @@ export interface DocMeta {
   /**
    * A full path of the document.
    */
-  // path: string;
+  path: string;
 }

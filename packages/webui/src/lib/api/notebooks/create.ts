@@ -1,12 +1,7 @@
 import type { NotebookConfig } from '$lib/models/notebook';
 import { err, fromPromise, okAsync } from 'neverthrow';
-import { getNBFS } from './setup';
-import {
-	NOTEBOOK_INTERNAL_FOLDER,
-	notebookConfigPath,
-	notebookInternalPath,
-	notebookPath
-} from './utils';
+import { getNBFS } from '../setup';
+import { notebookConfigPath, notebookInternalPath, notebookPath } from '../utils';
 
 export async function createNotebook(name: string) {
 	const [nbfs] = await getNBFS();
