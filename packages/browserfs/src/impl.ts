@@ -1,13 +1,13 @@
 import { Doc, DocsStore, ListOpts, ListResult } from '@jotx/core';
 import { Decoder, Encoder } from '@jotx/core/src/store';
-import { FSModule } from 'browserfs/dist/node/core/FS';
+import FS from 'browserfs/dist/node/core/FS';
 
 export class BrowserFSStore implements DocsStore {
-  protected fs: FSModule;
+  protected fs: FS;
   protected encoder?: Encoder;
   protected decoder?: Decoder;
 
-  constructor(fs: FSModule, encoder?: Encoder, decoder?: Decoder) {
+  constructor(fs: FS, encoder?: Encoder, decoder?: Decoder) {
     this.fs = fs;
     this.encoder = encoder;
     this.decoder = decoder;

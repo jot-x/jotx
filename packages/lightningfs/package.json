@@ -1,0 +1,20 @@
+{
+  "name": "@jotx/lightningfs",
+  "version": "0.0.1",
+  "description": "LightningFS implementation of store API",
+  "main": "src/index.js",
+  "keywords": [
+    "notes",
+    "note-taking",
+    "collaboration"
+  ],
+  "author": "Indexia Technologies.",
+  "license": "BSL",
+  "dependencies": {
+    "@isomorphic-git/lightning-fs": "^4.6.0",
+    "@jotx/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.6.2"
+  }
+}

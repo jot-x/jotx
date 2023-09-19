@@ -12,5 +12,5 @@ export interface ListResult<T extends Doc> {
 
 export type EncodingType = 'markdown';
 
-export type Encoder<T extends Doc = Doc> = (doc: T) => Buffer;
-export type Decoder<T extends Doc = Doc> = (buffer: Buffer) => T;
+export type Encoder<T extends Doc = Doc> = (doc: T) => string;
+export type Decoder<T extends Doc = Doc> = (content: string) => T;
