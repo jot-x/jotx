@@ -113,7 +113,9 @@
 					</dl>
 				</div>
 			</div>
-			<div class="my-auto -order-1 lg:order-1"><Notebooks hideNotebooks /></div>
+			<div class="my-auto -order-1 lg:order-1">
+				<Notebooks hideNotebooks initialProvider="unknown" />
+			</div>
 		</div>
 	</div>
 </div>

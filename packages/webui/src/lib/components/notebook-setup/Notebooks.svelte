@@ -4,17 +4,18 @@
 	import Button from '../ui/button/button.svelte';
 	import { IconGitHub, IconThumbUp, IconLeft } from '../icons';
 	import Github from './Github.svelte';
+	import type { GitPlatformType } from '$lib/models/git-platform';
+	import Local from './Local.svelte';
 
 	export let hideNotebooks = false;
+	export let initialProvider: GitPlatformType | undefined;
 
 	interface Provider {
-		id: providerType;
+		id: GitPlatformType;
 		title: string;
 		icon: ComponentType;
 		setup: ComponentType;
 	}
-
-	type providerType = 'github';
 
 	const providers: Provider[] = [
 		{
@@ -22,10 +23,18 @@
 			title: 'Github',
 			icon: IconGitHub,
 			setup: Github
+		},
+		{
+			id: 'unknown',
+			title: 'Local',
+			icon: IconGitHub,
+			setup: Local
 		}
 	];
 
-	let selected: Provider | undefined = providers[0];
+	let selected: Provider | undefined = initialProvider
+		? providers.filter((p) => p.id === initialProvider)[0]
+		: undefined;
 	// let selected: Provider | undefined;
 </script>
 
@@ -47,10 +56,12 @@
 									<svelte:component this={provider.icon} class="w-6 h-6" />
 									<div class="flex-1">
 										<span class="ml-3 whitespace-nowrap">{provider.title}</span>
-										<span
-											class="inline-flex items-center justify-center px-2 py-0.5 ml-2 text-xxs font-medium text-gray-600 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400"
-											><IconThumbUp /></span
-										>
+										{#if provider.id === 'github'}
+											<span
+												class="inline-flex items-center justify-center px-2 py-0.5 ml-2 text-xxs font-medium text-gray-600 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400"
+												><IconThumbUp /></span
+											>
+										{/if}
 									</div>
 									<Button on:click={() => (selected = provider)}>Create</Button>
 									<!-- <span
