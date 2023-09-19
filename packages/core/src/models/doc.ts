@@ -1,12 +1,3 @@
-export interface Doc {
-  meta: DocMeta;
-}
-
-export interface DocMeta {
-  created: Date;
-  updated: Date;
-}
-
 /**
  * A minimal representation of a Document that can be stored, retrieved, modified, tracked for changes, etc.
  */

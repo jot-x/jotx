@@ -1,8 +1,8 @@
-import { Doc, DocsStore, ListOpts, ListResult } from '@jotx/core';
+import { Doc, DocStore, ListOpts, ListResult } from '@jotx/core';
 import { Decoder, Encoder } from '@jotx/core/src/store';
 import FS from 'browserfs/dist/node/core/FS';
 
-export class BrowserFSStore implements DocsStore {
+export class BrowserFSStore implements DocStore {
   protected fs: FS;
   protected encoder?: Encoder;
   protected decoder?: Decoder;

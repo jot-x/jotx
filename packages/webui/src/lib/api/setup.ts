@@ -1,4 +1,4 @@
-import type { Doc, DocsStore } from '@jotx/core';
+import type { Doc, DocStore } from '@jotx/core';
 import FS, { PromisifiedFS } from '@isomorphic-git/lightning-fs';
 import { LightningfsStore } from '@jotx/lightningfs';
 const nbfs = new FS('testfs').promises;
@@ -15,6 +15,6 @@ const decoder: <T extends Doc>(str: string) => T = (str) => {
 
 const docsStore = new LightningfsStore(nbfs, encoder, decoder);
 
-export function getNBFS(): [PromisifiedFS, DocsStore] {
+export function getNBFS(): [PromisifiedFS, DocStore] {
 	return [nbfs, docsStore];
 }

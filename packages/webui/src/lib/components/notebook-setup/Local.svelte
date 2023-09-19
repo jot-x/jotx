@@ -2,13 +2,13 @@
 	import { goto } from '$app/navigation';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
-	import type { DocsStore } from '@jotx/core';
+	import type { DocStore } from '@jotx/core';
 	import type { ButtonEventHandler } from 'bits-ui/dist/bits/button';
 	import { onMount } from 'svelte';
 	import Button from '../ui/button/button.svelte';
 
 	let name: string = 'personal';
-	let docsStore: DocsStore;
+	let docsStore: DocStore;
 	onMount(async () => {});
 
 	async function onCreate(e: ButtonEventHandler<MouseEvent>) {

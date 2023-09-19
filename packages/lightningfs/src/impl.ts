@@ -1,9 +1,9 @@
-import { Doc, DocsStore, ListOpts, ListResult } from '@jotx/core';
-import { Decoder, Encoder } from '@jotx/core/src/store';
-import { PromisifiedFS } from '@isomorphic-git/lightning-fs';
+import type { Doc, DocStore, ListOpts, ListResult } from '@jotx/core';
+import type { Decoder, Encoder } from '@jotx/core/src/store';
+import type { PromisifiedFS } from '@isomorphic-git/lightning-fs';
 import { contentAsString } from './util';
 
-export class LightningfsStore implements DocsStore {
+export class LightningfsStore implements DocStore {
   protected fs: PromisifiedFS;
   protected encoder?: Encoder;
   protected decoder?: Decoder;
