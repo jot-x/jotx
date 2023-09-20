@@ -2,6 +2,8 @@
 	import { page } from '$app/stores';
 	import { cn } from '$lib/ui-utils';
 	import type { ComponentType } from 'svelte';
+	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
+	import IconNotebook from '$lib/components/icons/IconNotebook.svelte';
 
 	const navs: { name: string; href: string; icon: ComponentType }[] = [
 		// { name: 'Dashboard', href: '#', icon: IconNotebook }
@@ -9,13 +11,13 @@
 </script>
 
 <div
-	class="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-50 lg:block lg:w-20 lg:overflow-y-auto lg:bg-gray-900 lg:pb-4"
+	class="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-50 lg:flex lg:w-20 lg:overflow-y-auto lg:bg-secondary lg:pb-4"
 >
 	<div class="flex h-16 shrink-0 items-center justify-center">
 		<!-- <IconLogo class="h-8 w-auto" /> -->
 	</div>
-	<nav class="mt-8">
-		<ul role="list" class="flex flex-col items-center space-y-1">
+	<nav class="mt-8 flex-1 flex flex-col">
+		<ul role="list" class="flex flex-col items-center space-y-1 grow flex-1">
 			{#each navs as nav}
 				<li>
 					<a
@@ -35,6 +37,12 @@
 			<li>
 				<!-- <CreateStoreDialog /> -->
 			</li>
+		</ul>
+		<ul class="flex flex-col items-center space-y-1">
+			<li>
+				<ThemeToggle class="group flex gap-x-3 rounded-md p-3 text-sm leading-6 font-semibold" />
+			</li>
+			<li />
 		</ul>
 	</nav>
 </div>

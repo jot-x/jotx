@@ -124,7 +124,7 @@
 			on:input={handleTitle}
 			on:blur={onInputBlur}
 			on:keypress={onInputKeyPress}
-			class="outline-none pb-5 font-semibold text-3xl"
+			class="outline-none pb-5 font-semibold text-3xl bg-background"
 		/>
 		{#if titleError}
 			<span
@@ -139,6 +139,6 @@
 		bind:this={editor}
 		bind:value={doc.content}
 		on:input={handleContent}
-		class="h-[88vh] w-full outline-none"
+		class="h-[88vh] w-full outline-none bg-background"
 	/>
 </div>

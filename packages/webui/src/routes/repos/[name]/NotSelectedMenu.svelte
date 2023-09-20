@@ -6,7 +6,7 @@
 
 <div class="h-screen w-full flex justify-center items-center">
 	<div class="mx-auto max-w-lg text-center">
-		<h2 class="text-base font-semibold leading-6 text-gray-900">No file is open</h2>
+		<h2 class="text-base font-semibold leading-6 text-primary">No file is open</h2>
 		<p class="mt-1 text-sm text-gray-500">Open or create a new note</p>
 		<ul role="list" class="mt-6 divide-y divide-gray-200">
 			<li>

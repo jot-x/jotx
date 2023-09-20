@@ -37,7 +37,7 @@
 				{/if}
 			{:else}
 				<button
-					class="hover:bg-gray-100 w-full text-left"
+					class="hover:bg-secondary w-full text-left"
 					class:bg-gray-50={selectedPath === tree.path}
 					on:click={() => dispatch('click', { path: tree.path })}
 				>

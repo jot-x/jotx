@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import FilesTree from '$lib/components/FilesTree.svelte';
@@ -8,7 +9,15 @@
 	import type { PageData } from './$types';
 	import DesktopSidebar from './DesktopSidebar.svelte';
 	import MobileTopNav from './MobileTopNav.svelte';
+	import { resolvedTheme } from '$lib/theme';
 	export let data: PageData;
+
+	if (browser) {
+		resolvedTheme.subscribe((value) => {
+			document.documentElement.classList.remove('light', 'dark');
+			document.documentElement.classList.add(value);
+		});
+	}
 
 	// TODO is there a better way than doing this?
 	$: selectedPath = $page.url.pathname.replace(`/repos/${data.repo.name}`, '');
@@ -34,7 +43,7 @@
 	</main>
 	<!-- tree column (hidden on smaller screens) -->
 	<aside
-		class="fixed inset-y-0 left-20 hidden w-96 overflow-y-auto border-r border-gray-200 px-4 py-6 sm:px-6 lg:px-8 xl:block"
+		class="fixed inset-y-0 left-20 hidden w-96 overflow-y-auto border-r border-border px-4 py-6 sm:px-6 lg:px-8 xl:block"
 	>
 		<h2 class="font-semibold">
 			{data.repo.title ? data.repo.title : capitalize(data.repo.name)} Notebook
