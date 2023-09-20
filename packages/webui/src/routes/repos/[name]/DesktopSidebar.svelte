@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 	import { cn } from '$lib/ui-utils';
 	import type { ComponentType } from 'svelte';
-	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
-	import IconNotebook from '$lib/components/icons/IconNotebook.svelte';
 
 	const navs: { name: string; href: string; icon: ComponentType }[] = [
 		// { name: 'Dashboard', href: '#', icon: IconNotebook }
