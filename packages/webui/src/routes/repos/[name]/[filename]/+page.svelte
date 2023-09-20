@@ -105,6 +105,12 @@
 			await invalidate('notes:load');
 		}
 	}
+
+	async function onInputKeyPress(e) {
+		if (e.key === 'Enter') {
+			editor.focus();
+		}
+	}
 </script>
 
 <div class="px-4 py-10 sm:px-6 lg:px-8 lg:py-6">
@@ -117,6 +123,7 @@
 			bind:value={newTitle}
 			on:input={handleTitle}
 			on:blur={onInputBlur}
+			on:keypress={onInputKeyPress}
 			class="outline-none pb-5 font-semibold text-3xl"
 		/>
 		{#if titleError}
