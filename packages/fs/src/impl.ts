@@ -1,9 +1,9 @@
-import { Decoder, Doc, Encoder, ListOpts, ListResult } from '@jotx/core';
+import { Decoder, Doc, DocStore, Encoder, ListOpts, ListResult } from '@jotx/core';
 import { PromiseFS, Stats } from './filesystem';
 import { FileStats } from './models';
 import { mkdirp, readdirRecursive } from './utils/fs';
 
-export class FileSystemDocStore {
+export class FileSystemDocStore implements DocStore {
   protected fs: PromiseFS;
   protected encoder?: Encoder;
   protected decoder?: Decoder;
@@ -73,9 +73,12 @@ export class FileSystemDocStore {
       data
     };
   }
-  delete(docpath: string): Promise<void> {
+  async delete(docpath: string): Promise<void> {
     // TODO support deleting a folder
     return this.fs.unlink(docpath);
+  }
+  async rename(docpath: string, newPath: string): Promise<void> {
+    return this.fs.rename(docpath, newPath);
   }
 }
 

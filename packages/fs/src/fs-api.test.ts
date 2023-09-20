@@ -127,3 +127,25 @@ describe('list', () => {
     );
   });
 });
+
+describe('rename', () => {
+  let fs = memfs().fs;
+  // @ts-ignore
+  const store = new FileSystemDocStore(fs.promises, encoder, decoder);
+
+  const file1 = {
+    content: 'foo1',
+    meta: { ...meta, path: '/foo.json' }
+  };
+
+  test('rename : ok', async () => {
+    await store.write('/foo.json', file1);
+    await store.rename('/foo.json', '/bar.json');
+    await expect(store.read('/bar.json')).resolves.toContain({ content: 'foo1' });
+    await expect(store.read('/foo.json')).rejects.toThrowError();
+  });
+
+  test('rename : not found', async () => {
+    expect(store.rename('/foo.json', '/bar.json')).rejects.toThrowError(/ENOENT/);
+  });
+});

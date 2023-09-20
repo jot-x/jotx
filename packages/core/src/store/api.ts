@@ -6,4 +6,5 @@ export interface DocStore {
   write<T extends Doc>(docpath: string, data: T, opts?: { encoder: Encoder<T> }): Promise<void>;
   list<T extends Doc>(path: string, opts?: ListOpts<T>): Promise<ListResult<T>>;
   delete(docpath: string): Promise<void>;
+  rename(docpath: string, newPath: string): Promise<void>;
 }
