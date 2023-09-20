@@ -9,6 +9,7 @@
 	import { SvelteComponent, onMount, tick } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import type { PageData } from './$types';
+	import DocStats from '$lib/components/DocStats.svelte';
 	const nameSchema = docSchemas.name;
 
 	export let data: PageData;
@@ -141,4 +142,5 @@
 		on:input={handleContent}
 		class="h-[88vh] w-full outline-none bg-background"
 	/>
+	<DocStats doc={data.doc} />
 </div>
