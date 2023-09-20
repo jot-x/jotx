@@ -12,6 +12,6 @@ interface Params {
  * @param param1 params
  * @returns
  */
-export async function readDoc(store: DocStore, { path, to }: Params) {
+export async function renameDoc(store: DocStore, { path, to }: Params) {
   return store.rename(path, to);
 }
