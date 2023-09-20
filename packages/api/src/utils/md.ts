@@ -23,6 +23,10 @@ export function extractFrontmatterAndContent(mdContent: string): {
   frontmatter?: string;
   content: string;
 } {
+  if (!mdContent) {
+    console.warn('mdContent is undefined');
+    return { content: undefined! };
+  }
   const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
   const matches = mdContent.match(frontmatterRegex);
 

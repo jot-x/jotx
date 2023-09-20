@@ -8,6 +8,7 @@
 <script lang="ts">
 	import type { TreeNode } from '$lib/utils/notes-tree';
 	import { createEventDispatcher } from 'svelte';
+	import IconTrash from './icons/IConTrash.svelte';
 	const dispatch = createEventDispatcher();
 
 	//	import { slide } from 'svelte/transition'
@@ -21,10 +22,13 @@
 	$: arrowDown = expanded;
 </script>
 
-<ul>
+<ul class="space-y-1">
 	<!-- transition:slide -->
 	{#each tree as tree}
-		<li>
+		<li
+			class="relative flex justify-between hover:bg-secondary px-2"
+			class:bg-secondary={selectedPath === tree.path}
+		>
 			{#if tree.children && tree.children.length > 0}
 				<span on:click={toggleExpansion}>
 					<span class="arrow" class:arrowDown>&#x25b6</span>
@@ -36,16 +40,19 @@
 					{/each}
 				{/if}
 			{:else}
-				<button
-					class="hover:bg-secondary w-full text-left"
-					class:bg-gray-50={selectedPath === tree.path}
-					on:click={() => dispatch('click', { path: tree.path })}
-				>
-					<span class="cursor-pointer">
-						<span class="no-arrow" />
-						{tree.label}
-					</span>
-				</button>
+				<div class="flex w-full gap-x-4">
+					<button class="w-full text-left" on:click={() => dispatch('click', { path: tree.path })}>
+						<span class="cursor-pointer">
+							<span class="no-arrow" />
+							{tree.label}
+						</span>
+					</button>
+				</div>
+				{#if selectedPath === tree.path}
+					<div class="flex shrink-0 items-center gap-x-4">
+						<button on:click={() => dispatch('delete', { path: tree.path })}><IconTrash /></button>
+					</div>
+				{/if}
 			{/if}
 		</li>
 	{/each}

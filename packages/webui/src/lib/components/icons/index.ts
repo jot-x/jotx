@@ -8,3 +8,4 @@ export { default as IconNotebook } from './IconNotebook.svelte';
 export { default as IconSpinner } from './IconSpinner.svelte';
 export { default as IconSun } from './IconSun.svelte';
 export { default as IconThumbUp } from './IconThumbUp.svelte';
+export { default as IconTrash } from './IconTrash.svelte';

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { goto } from '$app/navigation';
+	import { goto, invalidate } from '$app/navigation';
 	import { page } from '$app/stores';
 	import FilesTree from '$lib/components/FilesTree.svelte';
 	import type { Note } from '$lib/models/note';
@@ -20,7 +20,7 @@
 	}
 
 	// TODO is there a better way than doing this?
-	$: selectedPath = $page.url.pathname.replace(`/repos/${data.repo.name}`, '');
+	$: selectedPath = decodeURIComponent($page.url.pathname.replace(`/repos/${data.repo.name}/`, ''));
 
 	function onFileClick(e: CustomEvent<any>): void {
 		const { path } = e.detail;
@@ -30,6 +30,15 @@
 			console.error('cannot find note');
 		}
 		goto(docLink(data.repo.name, ns[0]), { keepFocus: true });
+	}
+
+	async function onDelete(e: CustomEvent<any>) {
+		const { getDocStore } = await import('$lib/api/setup');
+		const st = getDocStore(data.repo.name);
+		const { path } = e.detail;
+		await st.delete(path);
+		await invalidate('notes:load');
+		goto(`/repos/${data.repo.name}`);
 	}
 </script>
 
@@ -50,7 +59,7 @@
 		</h2>
 		<div class="py-4">
 			{#if data.tree && data.tree.length > 0}
-				<FilesTree tree={data.tree} on:click={onFileClick} {selectedPath} />
+				<FilesTree tree={data.tree} on:click={onFileClick} {selectedPath} on:delete={onDelete} />
 			{/if}
 		</div>
 	</aside>
