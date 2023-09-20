@@ -3,15 +3,26 @@
 	import type { PageData } from './$types';
 	import Editor from '$lib/components/Editor.svelte';
 	import { fade } from 'svelte/transition';
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
+	import { basename } from '$lib/utils/fs';
+	import { page } from '$app/stores';
+	import { renameDoc } from '@jotx/api';
+	import { goto, invalidate } from '$app/navigation';
+	import { docLink } from '$lib/utils/doc';
 
 	export let data: PageData;
 	let dirty = false;
 	$: filename = data.filename;
 	$: doc = data.doc;
+	$: orgTitle = doc && basename(doc.meta.path, { stripFormat: true });
+	let title = '';
 	let saving = false;
 
-	const handleInput = async (e) => {
+	page.subscribe(() => {
+		title = basename(data.doc.meta.path, { stripFormat: true });
+	});
+
+	const handleContent = async (e) => {
 		dirty = true;
 		_debounce(async (e) => {
 			saving = true;
@@ -20,7 +31,24 @@
 			await writeDoc(getDocStore(data.repo_name), { path: filename, doc });
 			saving = false;
 			dirty = false;
-		}, 2000)(e);
+		}, 500)(e);
+	};
+
+	const handleTitle = async (e) => {
+		dirty = true;
+		_debounce(async (e) => {
+			const { getDocStore } = await import('$lib/api/setup');
+			if (title !== orgTitle) {
+				saving = true;
+				const newPath = doc.meta.path.replace(orgTitle, title);
+				await renameDoc(getDocStore(data.repo_name), { path: doc.meta.path, to: newPath });
+				saving = false;
+				dirty = false;
+				doc.meta.path = newPath;
+				await goto(docLink(data.repo_name, doc), { keepFocus: true });
+				await invalidate('notes:load');
+			}
+		}, 500)(e);
 	};
 
 	onMount(() => {
@@ -37,9 +65,14 @@
 	{#if saving}
 		<span out:fade class="fixed top-8 right-12 bg-secondary">Saving...</span>
 	{/if}
+	<input
+		bind:value={title}
+		on:input={handleTitle}
+		class="outline-none pb-5 font-semibold text-3xl"
+	/>
 	<Editor
 		bind:value={doc.content}
-		on:input={handleInput}
+		on:input={handleContent}
 		autofocus
 		class="h-[95vh] w-full outline-none"
 	/>

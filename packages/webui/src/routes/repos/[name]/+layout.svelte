@@ -3,6 +3,7 @@
 	import { page } from '$app/stores';
 	import FilesTree from '$lib/components/FilesTree.svelte';
 	import type { Note } from '$lib/models/note';
+	import { docLink } from '$lib/utils/doc';
 	import { capitalize } from '$lib/utils/string';
 	import type { PageData } from './$types';
 	import DesktopSidebar from './DesktopSidebar.svelte';
@@ -10,7 +11,7 @@
 	export let data: PageData;
 
 	// TODO is there a better way than doing this?
-	$: selectedPath = $page.url.pathname.replace('/repos/personal', '');
+	$: selectedPath = $page.url.pathname.replace(`/repos/${data.repo.name}`, '');
 
 	function onFileClick(e: CustomEvent<any>): void {
 		const { path } = e.detail;
@@ -19,7 +20,7 @@
 			// TODO show error
 			console.error('cannot find note');
 		}
-		goto(`/repos/personal/${encodeURIComponent(ns[0].meta.path)}`);
+		goto(docLink(data.repo.name, ns[0]));
 	}
 </script>
 
