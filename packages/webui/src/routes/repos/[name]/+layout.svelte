@@ -14,7 +14,7 @@
 
 	function onFileClick(e: CustomEvent<any>): void {
 		const { path } = e.detail;
-		const ns = data.docs.filter((n: Note) => n.meta.path === n.meta.path);
+		const ns = data.docs.filter((n: Note) => n.meta.path === path);
 		if (ns.length !== 1) {
 			// TODO show error
 			console.error('cannot find note');
