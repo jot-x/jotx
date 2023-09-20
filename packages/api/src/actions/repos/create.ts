@@ -1,19 +1,13 @@
 import { PromiseFS } from '@jotx/fs';
 import { GitVersioning } from '@jotx/git';
-import z from 'zod';
+import { z } from 'zod';
 import { REPO_INTERNAL_FOLDER_NAME } from '../../constants';
 import { RepoConfig } from '../../models/repo';
+import { name } from '../../schema/doc';
 import { repoConfigPath } from '../../utils/repo';
 
 export const Schema = z.object({
-  name: z
-    .string()
-    .min(2, 'Name length should have at least 2 letters')
-    .max(20, 'Name length should have maximum of 20 chars')
-    .refine(
-      (value: string) => /^[a-zA-Z0-9_]+$/.test(value),
-      'Name should contain only alphabets and digits'
-    )
+  name
 });
 
 interface Params {
