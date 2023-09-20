@@ -6,7 +6,7 @@
 	import { basename } from '$lib/utils/fs';
 	import { docSchemas, readDoc, renameDoc } from '@jotx/api';
 	import _debounce from 'lodash.debounce';
-	import { onMount } from 'svelte';
+	import { SvelteComponent, onMount, tick } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import type { PageData } from './$types';
 	const nameSchema = docSchemas.name;
@@ -20,8 +20,20 @@
 	let saving = false;
 	let titleError: string | null;
 
-	page.subscribe(() => {
+	let input: HTMLInputElement;
+	let editor: SvelteComponent;
+
+	page.subscribe(async () => {
 		newTitle = basename(data.doc.meta.path, { stripFormat: true });
+
+		if ($page.url.searchParams.get('mode') === 'new') {
+			await tick();
+			input.select();
+			input.focus();
+		} else {
+			await tick();
+			if (editor) editor.focus();
+		}
 	});
 
 	const handleContent = async (e) => {
@@ -62,7 +74,7 @@
 		}
 	};
 
-	onMount(() => {
+	onMount(async () => {
 		window.addEventListener('beforeunload', (e) => {
 			if (dirty) {
 				e.preventDefault();
@@ -101,6 +113,7 @@
 	{/if}
 	<div class="relative">
 		<input
+			bind:this={input}
 			bind:value={newTitle}
 			on:input={handleTitle}
 			on:blur={onInputBlur}
@@ -116,9 +129,9 @@
 		{/if}
 	</div>
 	<Editor
+		bind:this={editor}
 		bind:value={doc.content}
 		on:input={handleContent}
-		autofocus
-		class="h-[95vh] w-full outline-none"
+		class="h-[88vh] w-full outline-none"
 	/>
 </div>

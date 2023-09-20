@@ -8,10 +8,14 @@
 
 	let el: HTMLTextAreaElement;
 
+	export async function focus() {
+		await tick();
+		el.focus();
+	}
+
 	onMount(async () => {
 		if (autofocus) {
-			await tick();
-			el.focus();
+			focus();
 		}
 	});
 </script>

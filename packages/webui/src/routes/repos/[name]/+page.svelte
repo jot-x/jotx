@@ -1,6 +1,8 @@
 <script lang="ts">
-	import { invalidate } from '$app/navigation';
+	import { goto, invalidate } from '$app/navigation';
 	import { newNote } from '$lib/api/utils';
+	import type { Note } from '$lib/models/note';
+	import { docLink } from '$lib/utils/doc';
 	import type { PageData } from './$types';
 	import NotSelectedMenu from './NotSelectedMenu.svelte';
 
@@ -12,9 +14,9 @@
 		const { writeDoc } = await import('@jotx/api');
 		const path = '/' + getNewFileName(data.docs);
 		const doc = newNote({ path, content: '' });
-		console.log(path);
-		const note = await writeDoc(getDocStore(repo.name), { path, doc });
+		const note = await writeDoc<Note>(getDocStore(repo.name), { path, doc });
 		await invalidate('notes:load');
+		goto(`${docLink(data.repo.name, note)}?mode=new`);
 	}
 
 	function getNewFileName(objects: { meta: { path: string } }[]): string {

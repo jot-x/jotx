@@ -20,7 +20,7 @@
 			// TODO show error
 			console.error('cannot find note');
 		}
-		goto(docLink(data.repo.name, ns[0]));
+		goto(docLink(data.repo.name, ns[0]), { keepFocus: true });
 	}
 </script>
 
