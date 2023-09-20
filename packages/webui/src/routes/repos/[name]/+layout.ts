@@ -3,7 +3,8 @@ import { buildTree } from '$lib/utils/notes-tree';
 import type { PageLoad } from './$types';
 export const ssr = false;
 
-export const load = (async ({ params }) => {
+export const load = (async ({ params, depends }) => {
+	depends('notes:load');
 	const { getDocStoreByFS, getFS } = await import('$lib/api/setup');
 	const { getConfig, listDocs } = await import('@jotx/api');
 	const { name } = params;
