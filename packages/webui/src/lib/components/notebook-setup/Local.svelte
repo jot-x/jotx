@@ -1,26 +1,25 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
-	import type { DocStore } from '@jotx/core';
 	import type { ButtonEventHandler } from 'bits-ui/dist/bits/button';
 	import { onMount } from 'svelte';
 	import Button from '../ui/button/button.svelte';
+	import { getFS } from '$lib/api/setup';
+	import { goto } from '$app/navigation';
 
 	let name: string = 'personal';
-	let docsStore: DocStore;
 	onMount(async () => {});
 
 	async function onCreate(e: ButtonEventHandler<MouseEvent>) {
-		const { createNotebook } = await import('$lib/api');
-		const resp = await createNotebook(name);
-		if (resp.isErr()) {
-			console.error(resp.error);
-			// show error
-			return;
-		}
+		const { createRepository } = await import('@jotx/api');
 
-		goto(`/notebooks/${name}`);
+		try {
+			const resp = await createRepository(getFS(name), { name });
+			goto(`/repos/${name}`);
+		} catch (err) {
+			// TODO show error
+			console.error(err);
+		}
 	}
 </script>
 

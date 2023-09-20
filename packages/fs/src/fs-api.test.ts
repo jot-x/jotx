@@ -104,7 +104,7 @@ describe('list', () => {
   });
 
   test('list - single folder1, non recursive', async () => {
-    const result = await store.list('/foo');
+    const result = await store.list<MyDoc>('/foo');
     expect(result.data).toHaveLength(2);
     const files1 = result.data.filter((d: MyDoc) => d.meta.path === '/foo/file1.json');
     expect(files1).toHaveLength(1);
@@ -112,7 +112,7 @@ describe('list', () => {
   });
 
   test('list - single folder2, non recursive', async () => {
-    const result = await store.list('/bar');
+    const result = await store.list<MyDoc>('/bar');
     expect(result.data).toHaveLength(1);
     const files1 = result.data.filter((d: MyDoc) => d.meta.path === '/bar/file3.json');
     expect(files1).toHaveLength(1);
@@ -120,7 +120,7 @@ describe('list', () => {
   });
 
   test('list - root - recursively', async () => {
-    const result = await store.list('/', { recursive: true });
+    const result = await store.list<MyDoc>('/', { recursive: true });
     expect(result.data).toHaveLength(3);
     expect(result.data.map((f: MyDoc) => f.meta.path).sort()).toEqual(
       [file1.meta.path, file2.meta.path, file3.meta.path].sort()

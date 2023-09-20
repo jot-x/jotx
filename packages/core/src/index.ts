@@ -1,4 +1,4 @@
-export { Doc, Note } from './models';
+export { Doc } from './models';
 export { DocStore, ListOpts, ListResult, Encoder, Decoder } from './store';
 export { DocsVersionControl } from './versioning/local';
 export { DocsRemoteVersionControl } from './versioning/remote';

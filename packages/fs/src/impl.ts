@@ -1,5 +1,6 @@
-import { Doc, ListResult, PromiseFS, ListOpts, Decoder, Encoder } from '@jotx/core';
-import { asString } from './utils/data';
+import { Decoder, Doc, Encoder, ListOpts, ListResult } from '@jotx/core';
+import { PromiseFS, Stats } from './filesystem';
+import { FileStats } from './models';
 import { mkdirp, readdirRecursive } from './utils/fs';
 
 export class FileSystemDocStore {
@@ -15,13 +16,17 @@ export class FileSystemDocStore {
     docpath: string,
     opts?: { decoder: Decoder<T> } | undefined
   ): Promise<T> {
-    const buff = await this.fs.readFile(docpath);
+    let buff = await this.fs.readFile(docpath);
     const decoder = opts?.decoder || this.decoder;
     if (!decoder) {
       throw new Error('decoder is required');
     }
+    const stats = await this.fs.stat(docpath);
     if (buff) {
-      const doc = decoder(asString(buff));
+      if (typeof buff === 'string') {
+        buff = new TextEncoder().encode(buff);
+      }
+      const doc = decoder(buff, docpath, stats);
       return doc as T;
     }
     throw new Error('content is empty');
@@ -37,7 +42,7 @@ export class FileSystemDocStore {
     }
     const buff = encoder(data);
     const paths = docpath.substring(0, docpath.lastIndexOf('/'));
-    await mkdirp(this.fs, paths);
+    if (paths) await mkdirp(this.fs, paths);
     return this.fs.writeFile(docpath, buff);
   }
   async list<T extends Doc>(path: string, opts?: ListOpts<T> | undefined): Promise<ListResult<T>> {
@@ -46,20 +51,20 @@ export class FileSystemDocStore {
     if (!decoder) {
       throw new Error('decoder is required');
     }
-    let files: string[] = [];
+    let files: { path: string; stats: Stats }[] = [];
+
     if (opts?.recursive) {
-      // readdirRecursive
       files = files.concat(await readdirRecursive(this.fs, path));
-      if (opts.filter) {
-        files = files.filter(opts.filter);
+      if (opts?.filter) {
+        files = files.filter((e) => opts.filter!(e.path, e.stats));
       }
     } else {
       const entries = await this.fs.readdir(path);
       for (const entry of entries) {
         const entryPath = `${path}/${entry}`;
-        const stat = await this.fs.stat(entryPath);
-        if (!stat.isDirectory()) {
-          files.push(entryPath);
+        const stats = await this.fs.stat(entryPath);
+        if (!stats.isDirectory()) {
+          files.push({ path: entryPath, stats });
         }
       }
     }
@@ -73,18 +78,21 @@ export class FileSystemDocStore {
     return this.fs.unlink(docpath);
   }
 }
+
 async function resolvePathToDocs<T extends Doc>(
   fs: PromiseFS,
   path: string,
+  stat: Stats,
   decoder: Decoder
 ): Promise<T> {
-  const data = await fs.readFile(path);
-  return decoder(asString(data), path) as T;
+  let data = await fs.readFile(path);
+  if (typeof data === 'string') data = new TextEncoder().encode(data);
+  return decoder(data, path, stat) as T;
 }
 async function resolvePathsToDocs<T extends Doc>(
   fs: PromiseFS,
-  files: string[],
+  files: FileStats[],
   decoder: Decoder
 ): Promise<T[]> {
-  return Promise.all(files.map((f) => resolvePathToDocs<T>(fs, f, decoder)));
+  return Promise.all(files.map((f) => resolvePathToDocs<T>(fs, f.path, f.stats, decoder)));
 }

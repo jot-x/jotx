@@ -1,23 +1,21 @@
-import { docToMd, mdToDoc } from '$lib/utils/md';
 import FS, { PromisifiedFS } from '@isomorphic-git/lightning-fs';
-import type { DocStore, Note } from '@jotx/core';
-import { FileSystemDocStore, asString } from '@jotx/fs';
-const nbfs = new FS('testfs').promises;
-nbfs.mkdir('/notebooks').catch(() => {});
+import { FileSystemDocStore } from '@jotx/fs';
 
-const encoder: (doc: Note) => string = (doc) => {
-	return docToMd(doc);
-};
+export const _FILESYSTEMS: Record<string, PromisifiedFS> = {};
 
-const decoder: (content: Uint8Array, path: string) => Note = (content, path) => {
-	const str = asString(content);
-	const note = mdToDoc(str, path);
-	note.meta.path = path;
-	return note;
-};
+export function getFS(repo: string): PromisifiedFS {
+	if (_FILESYSTEMS[repo]) {
+		return _FILESYSTEMS[repo];
+	}
+	const fs = new FS('jotx_' + repo).promises;
+	_FILESYSTEMS[repo] = fs;
+	return fs;
+}
 
-const docsStore = new FileSystemDocStore(nbfs, encoder, decoder);
+export function getDocStore(repo: string): FileSystemDocStore {
+	return new FileSystemDocStore(getFS(repo));
+}
 
-export function getNBFS(): [PromisifiedFS, DocStore] {
-	return [nbfs, docsStore];
+export function getDocStoreByFS(fs: PromisifiedFS): FileSystemDocStore {
+	return new FileSystemDocStore(fs);
 }

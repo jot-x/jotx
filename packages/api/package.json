@@ -1,0 +1,27 @@
+{
+  "name": "@jotx/api",
+  "version": "0.0.1",
+  "description": "An implementation using fs & git",
+  "main": "src/index.js",
+  "keywords": [
+    "notes",
+    "note-taking",
+    "collaboration"
+  ],
+  "author": "Indexia Technologies.",
+  "license": "BSL",
+  "dependencies": {
+    "@isomorphic-git/lightning-fs": "^4.6.0",
+    "@jotx/core": "workspace:*",
+    "@jotx/fs": "workspace:*",
+    "@jotx/git": "workspace:*",
+    "@types/js-yaml": "^4.0.6",
+    "js-yaml": "^4.1.0",
+    "neverthrow": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.6.2",
+    "memfs": "^4.3.0",
+    "zod": "^3.22.2"
+  }
+}

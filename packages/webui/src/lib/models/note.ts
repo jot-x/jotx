@@ -1,4 +1,4 @@
-import { Doc } from './doc';
+import type { FrontmatterDoc } from '@jotx/api/src/models/fmdoc';
 
 /**
  * Note's heading details.
@@ -6,16 +6,16 @@ import { Doc } from './doc';
  * When note is written in Markdown, this corresponds to the Frontmatter section.
  */
 export interface NoteHeader {
-  /**
-   * Classifies notes by primitive strings.
-   */
-  tags: string[];
-  /**
-   * The title of the note
-   *
-   * If not defined in frontmatter, when notes stored in files, this can be the file name.
-   */
-  title?: string;
+	/**
+	 * Classifies notes by primitive strings.
+	 */
+	tags: string[];
+	/**
+	 * The title of the note
+	 *
+	 * If not defined in frontmatter, when notes stored in files, this can be the file name.
+	 */
+	title?: string;
 }
 
 /**
@@ -23,7 +23,6 @@ export interface NoteHeader {
  * Notes are typically used to capture and preserve important or noteworthy information for future reference.
  * They can serve various purposes, both personal and professional.
  */
-export interface Note extends Doc {
-  header?: NoteHeader;
-  content: string;
+export interface Note extends FrontmatterDoc {
+	header?: NoteHeader;
 }

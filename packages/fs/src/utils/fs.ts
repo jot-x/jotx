@@ -1,4 +1,5 @@
 import { PromiseFS } from '../filesystem';
+import { FileStats } from '../models';
 
 export async function mkdirp(fs: PromiseFS, directory: string) {
   try {
@@ -17,19 +18,19 @@ export async function mkdirp(fs: PromiseFS, directory: string) {
   }
 }
 
-export async function readdirRecursive(fs: PromiseFS, directory: string): Promise<string[]> {
-  const files: string[] = [];
+export async function readdirRecursive(fs: PromiseFS, directory: string): Promise<FileStats[]> {
+  const files: FileStats[] = [];
   const entries = await fs.readdir(directory);
 
   for (const entry of entries) {
     const entryPath = `${directory}/${entry}`.replace(/\/+/g, '/');
-    const stat = await fs.stat(entryPath);
+    const stats = await fs.stat(entryPath);
 
-    if (stat.isDirectory()) {
+    if (stats.isDirectory()) {
       const subdirectoryFiles = await readdirRecursive(fs, entryPath);
       files.push(...subdirectoryFiles);
     } else {
-      files.push(entryPath);
+      files.push({ path: entryPath, stats });
     }
   }
 

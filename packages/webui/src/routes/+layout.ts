@@ -3,7 +3,7 @@ import type { LayoutLoad } from './$types';
 export const ssr = false;
 
 export const load = (async () => {
-	const { listNotebooks } = await import('$lib/api');
-	const notebooks = await listNotebooks();
-	return { notebooks };
+	const { listRepos } = await import('$lib/api/list');
+	const repos = await listRepos();
+	return { repos };
 }) satisfies LayoutLoad;

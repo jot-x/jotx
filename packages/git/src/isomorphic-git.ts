@@ -9,14 +9,14 @@ import type {
 } from '@jotx/core';
 import { CommitResult } from '@jotx/core/src/versioning/models/commit-result';
 import { User } from '@jotx/core/src/versioning/models/user';
-import { CallbackFsClient, init, listFiles, add, status, commit, log, clone } from 'isomorphic-git';
+import { PromiseFsClient, init, listFiles, add, status, commit, log, clone } from 'isomorphic-git';
 
 export class GitVersioning implements DocsVersionControl, DocsRemoteVersionControl {
-  protected fs: CallbackFsClient;
+  protected fs: PromiseFsClient;
   protected dir: string;
   protected httpClient?: HttpClient;
 
-  constructor(fs: CallbackFsClient, dir: string, httpClient?: HttpClient) {
+  constructor(fs: PromiseFsClient, dir: string, httpClient?: HttpClient) {
     this.fs = fs;
     this.dir = dir;
     this.httpClient = httpClient;

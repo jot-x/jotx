@@ -7,9 +7,12 @@
 
 <script lang="ts">
 	import type { TreeNode } from '$lib/utils/notes-tree';
+	import { createEventDispatcher } from 'svelte';
+	const dispatch = createEventDispatcher();
 
 	//	import { slide } from 'svelte/transition'
 	export let tree: TreeNode;
+	export let selectedPath: string;
 
 	let expanded = _expansionState[tree.label] || false;
 	const toggleExpansion = () => {
@@ -32,10 +35,16 @@
 				{/each}
 			{/if}
 		{:else}
-			<span>
-				<span class="no-arrow" />
-				{tree.label}
-			</span>
+			<button
+				class="hover:bg-gray-100 w-full text-left"
+				class:bg-gray-50={selectedPath === tree.path}
+				on:click={() => dispatch('click', { path: tree.path })}
+			>
+				<span class="cursor-pointer">
+					<span class="no-arrow" />
+					{tree.label}
+				</span>
+			</button>
 		{/if}
 	</li>
 </ul>

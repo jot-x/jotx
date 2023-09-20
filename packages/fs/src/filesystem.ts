@@ -29,7 +29,8 @@ export interface PromiseFS {
     options?: WriteFileOptions | string
   ): Promise<void>;
 
-  readFile(filepath: string, options?: ReadFileOptions | string): Promise<Uint8Array | string>;
+  readFile(filepath: string, options: 'utf8' | { encoding: 'utf8' }): Promise<string | Uint8Array>;
+  readFile(filepath: string, options?: {}): Promise<string | Uint8Array>;
 
   /**
    * Delete a file
@@ -51,6 +52,39 @@ export interface PromiseFS {
    * @param options
    */
   stat(filepath: string, options?: undefined): Promise<Stats>;
+
+  /**
+   * Like fs.stat except that paths to symlinks return the symlink stats not the file stats of the symlink's target.
+   * @param filepath
+   * @param options
+   */
+  lstat(filepath: string, options?: undefined): Promise<Stats>;
+
+  /**
+   * Create a symlink at filepath that points to target.
+   * @param target
+   * @param filepath
+   */
+  symlink(target: string, filepath: string): Promise<void>;
+
+  /**
+   * Read the target of a symlink.
+   * @param filepath
+   * @param options
+   * @returns The link string.
+   */
+  readlink(filepath: string, options?: undefined): Promise<string>;
+
+  /**
+   * @param filepath
+   * @returns The size of a file or directory in bytes.
+   */
+  du(filepath: string): Promise<number>;
+  /**
+   * Function that saves anything that need to be saved in IndexedBD or custom IDB object. Right now it saves SuperBlock so it's save to dump the object as dump it into a file (e.g. from a Browser)
+   * @returns Promise that resolves when super block is saved to file
+   */
+  flush(): Promise<void>;
 }
 
 export interface ReadFileOptions {
