@@ -11,42 +11,44 @@
 	const dispatch = createEventDispatcher();
 
 	//	import { slide } from 'svelte/transition'
-	export let tree: TreeNode;
+	export let tree: TreeNode[];
 	export let selectedPath: string;
 
-	let expanded = _expansionState[tree.label] || false;
+	let expanded = _expansionState[tree[0].path] || false;
 	const toggleExpansion = () => {
-		expanded = _expansionState[tree.label] = !expanded;
+		expanded = _expansionState[tree[0].path] = !expanded;
 	};
 	$: arrowDown = expanded;
 </script>
 
 <ul>
 	<!-- transition:slide -->
-	<li>
-		{#if tree.children && tree.children.length > 0}
-			<span on:click={toggleExpansion}>
-				<span class="arrow" class:arrowDown>&#x25b6</span>
-				{tree.label}
-			</span>
-			{#if expanded}
-				{#each tree.children as child}
-					<svelte:self tree={child} />
-				{/each}
-			{/if}
-		{:else}
-			<button
-				class="hover:bg-gray-100 w-full text-left"
-				class:bg-gray-50={selectedPath === tree.path}
-				on:click={() => dispatch('click', { path: tree.path })}
-			>
-				<span class="cursor-pointer">
-					<span class="no-arrow" />
+	{#each tree as tree}
+		<li>
+			{#if tree.children && tree.children.length > 0}
+				<span on:click={toggleExpansion}>
+					<span class="arrow" class:arrowDown>&#x25b6</span>
 					{tree.label}
 				</span>
-			</button>
-		{/if}
-	</li>
+				{#if expanded}
+					{#each tree.children as child}
+						<svelte:self tree={child} />
+					{/each}
+				{/if}
+			{:else}
+				<button
+					class="hover:bg-gray-100 w-full text-left"
+					class:bg-gray-50={selectedPath === tree.path}
+					on:click={() => dispatch('click', { path: tree.path })}
+				>
+					<span class="cursor-pointer">
+						<span class="no-arrow" />
+						{tree.label}
+					</span>
+				</button>
+			{/if}
+		</li>
+	{/each}
 </ul>
 
 <style>

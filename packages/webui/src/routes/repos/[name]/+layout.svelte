@@ -39,7 +39,7 @@
 			{data.repo.title ? data.repo.title : capitalize(data.repo.name)} Notebook
 		</h2>
 		<div class="py-4">
-			{#if data.tree}
+			{#if data.tree && data.tree.length > 0}
 				<FilesTree tree={data.tree} on:click={onFileClick} {selectedPath} />
 			{/if}
 		</div>

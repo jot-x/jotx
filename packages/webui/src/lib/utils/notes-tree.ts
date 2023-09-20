@@ -4,7 +4,7 @@ export interface TreeNode {
 	children?: TreeNode[];
 }
 
-export function buildTree(filePaths: string[]): TreeNode {
+export function buildTree(filePaths: string[]): TreeNode[] {
 	const root: TreeNode[] = [];
 
 	for (const filePath of filePaths) {
@@ -31,5 +31,5 @@ export function buildTree(filePaths: string[]): TreeNode {
 		}
 	}
 
-	return root[0];
+	return root;
 }
