@@ -10,17 +10,17 @@ import type JotxInternals from '/types/internal';
  */
 export const makeEditor = ([state, setState]: JotxInternals.Store): JotxInternals.Editor => {
   const editor = new EditorView({
+    // todo this is deprecated
     dispatch: (transaction: JotxInternals.Vendor.Transaction) => {
       const { options } = state();
       const newDoc = transaction.newDoc.toString();
 
-      // options.hooks.beforeUpdate(newDoc);
+      options.hooks.beforeUpdate(newDoc);
       editor.update([transaction]);
 
       if (transaction.docChanged) {
         setState({ ...state(), doc: newDoc });
-
-        // options.hooks.afterUpdate(newDoc);
+        options.hooks.afterUpdate(newDoc);
       }
     },
     state: makeState([state, setState])

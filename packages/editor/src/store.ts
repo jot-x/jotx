@@ -8,7 +8,11 @@ import { RecursivePartial } from '/types/ts';
 
 export const blankState = (): JotxInternal.State => {
   const options = {
-    doc: ''
+    doc: '',
+    hooks: {
+      afterUpdate: () => {},
+      beforeUpdate: () => {}
+    }
   };
 
   return {
