@@ -1,6 +1,9 @@
 import type {
+  EditorState as VendorState,
+  StateEffect as VendorStateEffect,
   Transaction as VendorTransaction,
-  EditorState as VendorState
+  Compartment as VendorCompartment,
+  Extension as VendorExtension
 } from '@codemirror/state';
 import type { EditorView as VendorView } from '@codemirror/view';
 import { Accessor, Setter } from 'solid-js';
@@ -36,6 +39,10 @@ export namespace JotxInternal {
      */
     editor: JotxInternal.Editor;
     /**
+     * extensions extends the functionality of the editor
+     */
+    extensions: Array<JotxInternal.Extension | JotxInternal.LazyExtension>;
+    /**
      * App configuration options
      */
     options: Jotx.Options;
@@ -52,6 +59,47 @@ export namespace JotxInternal {
      */
     workQueue: Queue;
   }
+
+  // ---
+  // extensions related
+  // ---
+
+  /**
+   * An extension enhances the functionality of the editor
+   */
+  export interface Extension {
+    compartment: JotxInternal.Vendor.Compartment;
+    initialValue: (store: JotxInternal.Store) => JotxInternal.Vendor.Extension;
+    reconfigure: (
+      store: JotxInternal.Store
+    ) =>
+      | Promise<JotxInternal.Vendor.StateEffect<unknown>>
+      | JotxInternal.Vendor.StateEffect<unknown>;
+  }
+
+  /**
+   * An extension that affects the editor
+   */
+  export interface LazyExtension {
+    compartment: JotxInternal.Vendor.Compartment;
+    initialValue: (store: JotxInternal.Store) => JotxInternal.Vendor.Extension;
+    reconfigure: (store: JotxInternal.Store) => Promise<JotxInternal.Vendor.StateEffect<unknown>>;
+  }
+
+  /**
+   * Given a store and compartment, return a side effect to reconfigure the editor
+   */
+  export type LazyExtensionResolver = (
+    store: JotxInternal.Store,
+    compartment: JotxInternal.Vendor.Compartment
+  ) => Promise<JotxInternal.Vendor.StateEffect<unknown>>;
+
+  /**
+   * Given app store, returns an extension
+   */
+  export type ExtensionResolver = (store: JotxInternal.Store) => JotxInternal.Vendor.Extension;
+  export type ExtensionResolvers = ExtensionResolver[];
+  export type LazyExtensionResolvers = LazyExtensionResolver[];
 
   /**
    * Encapsulates vendor specific interfaces.
@@ -73,6 +121,26 @@ export namespace JotxInternal {
      * State updates creates a transaction, which produces a new state instance.
      */
     export type State = VendorState;
+
+    // ---
+    // extensions related
+    // ---
+
+    /**
+     * State effects can be used to represent additional effects associated with a tx.
+     */
+    export type StateEffect<Type> = VendorStateEffect<Type>;
+
+    /**
+     * Can be used to make a configuratio dynamic.
+     */
+    export type Compartment = VendorCompartment;
+
+    /**
+     * Extension values can be provided when creating a state to attach various
+     * kinds of configuration and behavio information.
+     */
+    export type Extension = VendorExtension;
   }
 }
 

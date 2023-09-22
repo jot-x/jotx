@@ -1,9 +1,10 @@
 import { render as solidRender } from 'solid-js/web';
+import { HYDRATION_MARKER_SELECTOR } from './constants';
 import { makeInstance } from './instance';
 import { makeStore } from './store';
-import type * as Jotx from '/types/jotx';
 import { App } from './ui/app';
-import { HYDRATION_MARKER_SELECTOR } from './constants';
+import type * as Jotx from '/types/jotx';
+import { RecursivePartial } from '/types/ts';
 
 /**
  *
@@ -14,7 +15,7 @@ import { HYDRATION_MARKER_SELECTOR } from './constants';
  */
 export const hydrate = (
   target: HTMLElement,
-  options: Partial<Jotx.Options> = {}
+  options: RecursivePartial<Jotx.Options> = {}
 ): Jotx.AwaitableInstance => {
   const store = makeStore(options);
 
@@ -40,7 +41,7 @@ export const hydrate = (
  */
 export const jotxe = (
   target: HTMLElement,
-  options: Partial<Jotx.Options> = {}
+  options: RecursivePartial<Jotx.Options> = {}
 ): Jotx.AwaitableInstance => {
   const hasHydrationMarker = !!target.querySelector(HYDRATION_MARKER_SELECTOR);
 
@@ -60,7 +61,7 @@ export const jotxe = (
  */
 export const render = (
   target: HTMLElement,
-  options: Partial<Jotx.Options> = {}
+  options: RecursivePartial<Jotx.Options> = {}
 ): Jotx.AwaitableInstance => {
   const store = makeStore(options);
 

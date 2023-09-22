@@ -4,6 +4,7 @@ import { useStore } from '../app';
 import { override } from '/src/utils/merge';
 import { Editor } from '/src/components/editor';
 import { getHydrationMarkerProps } from '/src/constants';
+import { Styles } from './styles';
 
 /**
  * The main component wrapping the editor, toolbar, etc.
@@ -18,6 +19,7 @@ export const Root: Component<{ store: JotxInternal.Store }> = () => {
 
   return (
     <div class="jotx jotxe" ref={setRoot} {...getHydrationMarkerProps()}>
+      <Styles />
       <div class="jotx-editor">
         <Editor />
       </div>
