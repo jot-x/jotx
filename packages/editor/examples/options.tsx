@@ -3,11 +3,10 @@ jotxe(document.querySelector('#root')!, {
   doc: '# Hello',
   hooks: {
     beforeUpdate: (doc) => {
-      doc += ' world';
-      console.log('before hook', doc);
+      // console.log('before hook', doc);
     },
     afterUpdate: (doc) => {
-      console.log('after hook', doc);
+      // console.log('after hook', doc);
     }
   }
 });
