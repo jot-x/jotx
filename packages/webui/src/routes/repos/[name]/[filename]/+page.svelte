@@ -37,16 +37,17 @@
 		}
 	});
 
-	const handleContent = async (e) => {
+	const onContentUpdate = async (e: CustomEvent<string>) => {
+		doc.content = e.detail;
 		dirty = true;
-		_debounce(async (e) => {
+		_debounce(async () => {
 			saving = true;
 			const { getDocStore } = await import('$lib/api/setup');
 			const { writeDoc } = await import('@jotx/api');
 			await writeDoc(getDocStore(data.repo_name), { path: filename, doc });
 			saving = false;
 			dirty = false;
-		}, 500)(e);
+		}, 500)();
 	};
 
 	const handleTitle = async (e) => {
@@ -136,11 +137,13 @@
 			>
 		{/if}
 	</div>
-	<Editor
+	<Editor bind:this={editor} value={doc.content} on:afterUpdate={onContentUpdate} />
+	<!-- <Editor
 		bind:this={editor}
 		bind:value={doc.content}
 		on:input={handleContent}
+		value={doc.content}
 		class="h-[88vh] w-full outline-none bg-background"
-	/>
+	/> -->
 	<DocStats doc={data.doc} />
 </div>
