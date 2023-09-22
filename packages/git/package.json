@@ -8,7 +8,7 @@
     "note-taking",
     "collaboration"
   ],
-  "author": "Indexia Technologies.",
+  "author": "Asaf Shakarzy <asaf000@gmail.com>",
   "license": "BSL",
   "dependencies": {
     "@jotx/core": "workspace:*",

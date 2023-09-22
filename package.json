@@ -10,7 +10,7 @@
   "scripts": {
     "test": "vitest"
   },
-  "author": "Indexia Technologies.",
+  "author": "Asaf Shakarzy <asaf000@gmail.com>",
   "license": "BSL",
   "devDependencies": {
     "ts-node": "^10.9.1",
