@@ -2,9 +2,9 @@ import { markdown as markdownExtension, markdownLanguage } from '@codemirror/lan
 import { languages as baseLanguages } from '@codemirror/language-data';
 import { Compartment } from '@codemirror/state';
 import { type MarkdownExtension } from '@lezer/markdown';
-import { buildVendorUpdates } from '/src/extensions';
-import { filterPlugins, partitionPlugins } from '/src/utils/options';
-import { type JotxInternal, type Options, PluginType } from '/types';
+import { buildVendorUpdates } from '../extensions';
+import { filterPlugins, partitionPlugins } from '../utils/options';
+import { type JotxInternal, type Options, PluginType } from '../../types';
 
 const makeExtension = ([state, setState]: JotxInternal.Store) => {
   const baseExtensions = [] as MarkdownExtension[];

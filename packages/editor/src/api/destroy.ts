@@ -1,4 +1,4 @@
-import type JotxInternal from '/types/internal';
+import type JotxInternal from '../../types/internal';
 
 /**
  * Destroy let you tear down the app during shutdown

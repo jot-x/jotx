@@ -1,7 +1,7 @@
 import { destroy, focus, reconfigure } from './api';
-import JotxInternal from '/types/internal';
-import * as Jotx from '/types/jotx';
-import { awaitable } from '/src/utils/awaitable';
+import JotxInternal from '../types/internal';
+import * as Jotx from '../types/jotx';
+import { awaitable } from './utils/awaitable';
 
 /**
  * Creates a new instance of {@link Jotx.Instance}

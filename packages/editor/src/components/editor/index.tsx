@@ -1,6 +1,6 @@
-import { useStore } from '/src/ui/app';
-import { override } from '/src/utils/merge';
-import { makeEditor } from '/src/vendor/editor';
+import { useStore } from '../../ui/app';
+import { override } from '../../utils/merge';
+import { makeEditor } from '../../vendor/editor';
 import type { Component } from 'solid-js';
 
 /**

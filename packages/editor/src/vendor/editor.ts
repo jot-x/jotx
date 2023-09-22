@@ -1,6 +1,6 @@
 import { EditorView } from '@codemirror/view';
-import { makeState } from '/src/vendor/state';
-import type JotxInternals from '/types/internal';
+import { makeState } from '../vendor/state';
+import type JotxInternals from '../../types/internal';
 
 /**
  * Creates a new {@link JotxInternals.Editor} instance instance

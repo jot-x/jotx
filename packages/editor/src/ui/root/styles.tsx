@@ -1,7 +1,7 @@
 import { createEffect, createSignal, onMount, type Component } from 'solid-js';
 import styles from './styles.css?inline';
 import { useStore } from '../app';
-import { buildVendorUpdates } from '/src/extensions';
+import { buildVendorUpdates } from '../../extensions';
 import { makeVars } from '../utils';
 
 /**

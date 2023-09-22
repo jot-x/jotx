@@ -11,9 +11,5 @@
     "types": ["vite/client"],
     "noEmit": true,
     "isolatedModules": true,
-    "paths": {
-      "/*": ["./*"],
-      "@jotx/editor": ["./src/index"]
-    }
   }
 }

@@ -1,10 +1,10 @@
 import { Compartment } from '@codemirror/state';
 import { isAutoDark } from './ui/utils';
 import { filterPlugins, partitionPlugins } from './utils/options';
-import { markdown } from '/src/extensions/markdown';
-import { appearance } from '/src/vendor/extensions/appearance';
-import { JotxInternal } from '/types';
-import { Appearance, PluginType } from '/types/values';
+import { markdown } from './extensions/markdown';
+import { appearance } from './vendor/extensions/appearance';
+import { JotxInternal } from '../types';
+import { Appearance, PluginType } from '../types/values';
 
 /**
  * Builds a list of extensions that can be used directly by the vendor

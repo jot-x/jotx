@@ -1,4 +1,4 @@
-import { jotxe } from '@jotx/editor';
+import { jotxe } from '../src/index';
 jotxe(document.querySelector('#app')!, {
   doc: `# Hello\n\n An example of a document edited with _@jotx/editor_\n\n`,
   hooks: {

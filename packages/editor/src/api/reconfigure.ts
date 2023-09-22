@@ -1,8 +1,8 @@
-import { buildVendorUpdates } from '/src/extensions';
-import { override } from '/src/utils/merge';
-import type * as Jotx from '/types/jotx';
-import type InkInternal from '/types/internal';
-import { RecursivePartial } from '/types/ts';
+import { buildVendorUpdates } from '../extensions';
+import { override } from '../utils/merge';
+import type * as Jotx from '../../types/jotx';
+import type InkInternal from '../../types/internal';
+import { RecursivePartial } from '../../types/ts';
 
 export const reconfigure = async (
   [state, setState]: InkInternal.Store,

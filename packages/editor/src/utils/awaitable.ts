@@ -1,4 +1,4 @@
-import { type Thenable } from '/src/utils/inspect';
+import { type Thenable } from '../utils/inspect';
 
 export type Awaitable<T> = () => Promise<T>;
 export type AwaitableCallbacks = {

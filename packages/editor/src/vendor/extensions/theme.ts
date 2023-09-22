@@ -1,9 +1,9 @@
 import { HighlightStyle, syntaxHighlighting } from '@codemirror/language';
 import type { Extension } from '@codemirror/state';
 import { tags } from '@lezer/highlight';
-import JotxUI from '/types/ui';
-import { isDark } from '/src/ui/utils';
-import { JotxInternal } from '/types';
+import JotxUI from '../../../types/ui';
+import { isDark } from '../../ui/utils';
+import { JotxInternal } from '../../../types';
 
 export const theme = (): Extension => {
   const extension = syntaxHighlighting(

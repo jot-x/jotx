@@ -7,8 +7,8 @@ import type {
 } from '@codemirror/state';
 import type { EditorView as VendorView } from '@codemirror/view';
 import { Accessor, Setter } from 'solid-js';
-import { Queue } from '/src/utils/queue';
-import * as Jotx from '/types/jotx';
+import { Queue } from '../src/utils/queue';
+import * as Jotx from '../types/jotx';
 
 /**
  * Internal interfaces of jotx editor

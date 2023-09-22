@@ -1,13 +1,16 @@
-import { isPromise } from '/src/utils/inspect';
-import { type EnumString, type Options, type Values } from '/types/jotx';
+import type { Options, Values, EnumString } from '../../types';
+import { isPromise } from '../utils/inspect';
 
 export type FlattenArray<T> = ReturnType<typeof flatten<T>>;
-export type FnIntersectionToTuple<FnIntersection> = FnIntersection extends { (a: infer A): void; (b: infer B): void }
+export type FnIntersectionToTuple<FnIntersection> = FnIntersection extends {
+  (a: infer A): void;
+  (b: infer B): void;
+}
   ? [A, B]
   : never;
-export type FnUnionToFnIntersection<FnUnion> = (FnUnion extends unknown ? (arg: FnUnion) => void : never) extends (
-  arg: infer FnIntersection
-) => void
+export type FnUnionToFnIntersection<FnUnion> = (
+  FnUnion extends unknown ? (arg: FnUnion) => void : never
+) extends (arg: infer FnIntersection) => void
   ? FnIntersection
   : never;
 export type Partition<T, V> = UnionToTuple<T> extends never
@@ -34,7 +37,9 @@ export type PluginForType<T extends Values.PluginType> = Extract<Options.Plugin,
 export type PluginValueForType<T extends Values.PluginType> = PluginForType<T>['value'];
 export type RecursiveArray<T> = Array<T | RecursiveArray<T>>;
 export type UnionToFnUnion<Union> = Union extends unknown ? (k: Union) => void : never;
-export type UnionToTuple<Union> = FnIntersectionToTuple<FnUnionToFnIntersection<UnionToFnUnion<Union>>>;
+export type UnionToTuple<Union> = FnIntersectionToTuple<
+  FnUnionToFnIntersection<UnionToFnUnion<Union>>
+>;
 export type ValidatorFn = (arg: any) => boolean;
 
 export const enumString = <T extends string>(value: T) => {
@@ -45,7 +50,10 @@ export const partitionPlugins = <T extends Options.Plugin['value']>(plugins: T[]
   return partition(plugins, isPromise);
 };
 
-export const isPlugin = <T extends PluginType>(pluginType: T, plugin: Options.Plugin): plugin is PluginMatcher[T] => {
+export const isPlugin = <T extends PluginType>(
+  pluginType: T,
+  plugin: Options.Plugin
+): plugin is PluginMatcher[T] => {
   return plugin.type === pluginType;
 };
 
@@ -53,19 +61,25 @@ export const isOptionsKey = (key: string, options: Options): key is keyof Option
   return !!key && key in options;
 };
 
-export const filterPlugins = <T extends PluginType>(pluginType: T, options: Options): PluginMatcher[T]['value'][] => {
-  return flatten(options.plugins).reduce<PluginMatcher[T]['value'][]>((matches, plugin: Options.Plugin) => {
-    if (isPlugin(pluginType, plugin)) {
-      // Todo: These "plugin" keys might be better suited under a namespace, but they are top-level for now.
-      // Individual key resolvers might be a good idea down the road to check for more fine-grained configuration options.
-      if (!plugin.key || (isOptionsKey(plugin.key, options) && options[plugin.key])) {
-        // @ts-expect-error Todo: Fix this type definition.
-        matches.push(plugin.value);
+export const filterPlugins = <T extends PluginType>(
+  pluginType: T,
+  options: Options
+): PluginMatcher[T]['value'][] => {
+  return flatten(options.plugins).reduce<PluginMatcher[T]['value'][]>(
+    (matches, plugin: Options.Plugin) => {
+      if (isPlugin(pluginType, plugin)) {
+        // Todo: These "plugin" keys might be better suited under a namespace, but they are top-level for now.
+        // Individual key resolvers might be a good idea down the road to check for more fine-grained configuration options.
+        if (!plugin.key || (isOptionsKey(plugin.key, options) && options[plugin.key])) {
+          // @ts-expect-error Todo: Fix this type definition.
+          matches.push(plugin.value);
+        }
       }
-    }
 
-    return matches;
-  }, []);
+      return matches;
+    },
+    []
+  );
 };
 
 export const flatten = <T>(array: RecursiveArray<T>): T[] => {
