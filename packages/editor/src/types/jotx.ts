@@ -18,8 +18,12 @@ export interface Instance {
   destroy: () => void;
   // focus the editor element
   focus: () => void;
+  // get the edited doc in its current state
+  getDoc: () => string;
   // reconfigure the instance
   reconfigure: (updates: RecursivePartial<Options>) => void;
+  // update the edited doc
+  update: (doc: string) => void;
 }
 
 /**

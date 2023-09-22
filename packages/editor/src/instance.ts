@@ -1,4 +1,4 @@
-import { destroy, focus, reconfigure } from './api';
+import { destroy, focus, getDoc, reconfigure, update } from './api';
 import JotxInternal from './types/internal';
 import * as Jotx from './types/jotx';
 import { awaitable } from './utils/awaitable';
@@ -11,9 +11,11 @@ import { awaitable } from './utils/awaitable';
  */
 export const makeInstance = (store: JotxInternal.Store): Jotx.AwaitableInstance => {
   const instance = {
+    getDoc: getDoc.bind(undefined, store),
     destroy: destroy.bind(undefined, store),
     focus: focus.bind(undefined, store),
-    reconfigure: reconfigure.bind(undefined, store)
+    reconfigure: reconfigure.bind(undefined, store),
+    update: update.bind(undefined, store)
   };
 
   return awaitable(instance, (resolve, reject) => {
