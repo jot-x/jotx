@@ -39,6 +39,10 @@
     flex-direction: column;
     position: relative;
   }
+
+  .jotxe .cm-editor.cm-focused {
+    outline: none;
+  }
   
   .jotxe .cm-scroller {
     align-items: flex-start;

@@ -138,12 +138,5 @@
 		{/if}
 	</div>
 	<Editor bind:this={editor} value={doc.content} on:afterUpdate={onContentUpdate} />
-	<!-- <Editor
-		bind:this={editor}
-		bind:value={doc.content}
-		on:input={handleContent}
-		value={doc.content}
-		class="h-[88vh] w-full outline-none bg-background"
-	/> -->
 	<DocStats doc={data.doc} />
 </div>
