@@ -1,4 +1,4 @@
-import type { Options, Values, EnumString } from '../../types';
+import type { Options, Values, EnumString } from '../types';
 import { isPromise } from '../utils/inspect';
 
 export type FlattenArray<T> = ReturnType<typeof flatten<T>>;

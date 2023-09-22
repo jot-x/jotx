@@ -1,6 +1,6 @@
 import { jotxe } from '../src/index';
 import example from '/examples/demo.md?raw';
-import { type Instance, type Values } from '../types/jotx';
+import { type Instance, type Values } from '../src/types/jotx';
 
 declare global {
   interface Window {

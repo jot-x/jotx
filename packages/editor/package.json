@@ -3,21 +3,45 @@
   "version": "0.0.1",
   "description": "Jotx editor library",
   "author": "Asaf Shakarzy <asaf000@gmail.com>",
-  "main": "src/index.js",
   "scripts": {
-    "core:typecheck": "tsc",
-    "typecheck": "run-p core:typecheck",
-    "start": "vite",
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+    "build": "run-s clean && run-s build:*",
+    "build:server": "VITE_SSR=1 vite build --ssr",
+    "build:client": "vite build",
+    "clean": "rimraf ./dist",
+    "typecheck": "tsc",
+    "serve": "vite preview",
+    "dev": "vite"
   },
   "license": "BSL",
+  "type": "module",
+  "module": "./dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "dist/**/*"
+  ],
+  "exports": {
+    ".": {
+      "browser": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/client.js"
+      },
+      "node": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js"
+      },
+      "types": "./dist/index.d.ts",
+      "import": "./dist/client.js"
+    }
+  },
   "devDependencies": {
     "npm-run-all": "^4.1.5",
+    "rimraf": "^5.0.1",
     "solid-devtools": "^0.27.7",
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
+    "vite-plugin-dts": "^3.5.4",
+    "vite-plugin-externalize-deps": "^0.7.0",
     "vite-plugin-solid": "^2.7.0"
   },
   "dependencies": {

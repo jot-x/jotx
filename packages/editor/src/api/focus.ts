@@ -1,4 +1,4 @@
-import type JotxInternal from '../../types/internal';
+import type JotxInternal from '../types/internal';
 
 export const focus = ([state]: JotxInternal.Store) => {
   const { editor } = state();

@@ -4,7 +4,7 @@ import { Compartment } from '@codemirror/state';
 import { type MarkdownExtension } from '@lezer/markdown';
 import { buildVendorUpdates } from '../extensions';
 import { filterPlugins, partitionPlugins } from '../utils/options';
-import { type JotxInternal, type Options, PluginType } from '../../types';
+import { type JotxInternal, type Options, PluginType } from '../types';
 
 const makeExtension = ([state, setState]: JotxInternal.Store) => {
   const baseExtensions = [] as MarkdownExtension[];

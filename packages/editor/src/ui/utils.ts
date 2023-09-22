@@ -1,7 +1,7 @@
 import { themeStyles } from '../vendor/extensions/theme';
-import { JotxInternal } from '../../types';
-import JotxUI from '../../types/ui';
-import * as JotxValues from '../../types/values';
+import { JotxInternal } from '../types';
+import JotxUI from '../types/ui';
+import * as JotxValues from '../types/values';
 
 /**
  * Creates new DOM elements

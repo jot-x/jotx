@@ -54,6 +54,7 @@
 		"@jotx/core": "workspace:*",
 		"@jotx/fs": "workspace:*",
 		"@jotx/git": "workspace:*",
+		"@jotx/editor": "workspace:*",
 		"@jotx/lightningfs": "workspace:*",
 		"clsx": "^2.0.0",
 		"lucide-svelte": "^0.279.0",

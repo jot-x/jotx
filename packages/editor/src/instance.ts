@@ -1,6 +1,6 @@
 import { destroy, focus, reconfigure } from './api';
-import JotxInternal from '../types/internal';
-import * as Jotx from '../types/jotx';
+import JotxInternal from './types/internal';
+import * as Jotx from './types/jotx';
 import { awaitable } from './utils/awaitable';
 
 /**

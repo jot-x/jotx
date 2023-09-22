@@ -1,5 +1,5 @@
 import { Component } from 'solid-js';
-import JotxInternal from '../../../types/internal';
+import JotxInternal from '../../types/internal';
 import { useStore } from '../app';
 import { override } from '../../utils/merge';
 import { Editor } from '../../components/editor';

@@ -2,11 +2,11 @@ import { createSignal } from 'solid-js';
 import { createElement } from './ui/utils';
 import { createExtensions } from './extensions';
 import { makeQueue } from './utils/queue';
-import JotxInternal from '../types/internal';
-import { Options } from '../types/jotx';
+import JotxInternal from './types/internal';
+import { Options } from './types/jotx';
 import { override } from './utils/merge';
-import { RecursivePartial } from '../types/ts';
-import * as JotxValues from '../types/values';
+import { RecursivePartial } from './types/ts';
+import * as JotxValues from './types/values';
 
 export const blankState = (): JotxInternal.State => {
   const options = {

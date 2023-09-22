@@ -1,10 +1,12 @@
 import { render as solidRender } from 'solid-js/web';
+// see https://github.com/qmhc/vite-plugin-dts/issues/269#issuecomment-1724683011
+import type * as Jotx from './types/jotx';
+export * from './types/jotx';
+import { RecursivePartial } from './types/ts';
 import { HYDRATION_MARKER_SELECTOR } from './constants';
 import { makeInstance } from './instance';
 import { makeStore } from './store';
 import { App } from './ui/app';
-import type * as Jotx from '../types/jotx';
-import { RecursivePartial } from '../types/ts';
 
 /**
  *
@@ -73,5 +75,6 @@ export const render = (
 };
 
 export default jotxe;
-
 export const defineOptions = <T extends RecursivePartial<Jotx.Options>>(options: T) => options;
+export const defineConfig = <T extends Jotx.Options>(config: T) => config;
+export const definePlugin = <T extends Jotx.Options.RecursivePlugin>(plugin: T) => plugin;

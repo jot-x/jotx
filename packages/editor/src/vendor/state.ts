@@ -1,6 +1,6 @@
 import { history, defaultKeymap } from '@codemirror/commands';
 import { EditorState } from '@codemirror/state';
-import JotxInternal from '../../types/internal';
+import JotxInternal from '../types/internal';
 import { buildVendors } from '../extensions';
 import { theme, lineWrapping, jotxe, blockquote, code } from './extensions';
 import { keymap } from '@codemirror/view';

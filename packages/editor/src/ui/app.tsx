@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'solid-js';
 import type { Component, JSX } from 'solid-js';
 import { blankState } from '../store';
-import JotxInternal from '../../types/internal';
+import JotxInternal from '../types/internal';
 import { Root } from './root';
 
 /**
