@@ -2,7 +2,7 @@ import { history } from '@codemirror/commands';
 import { EditorState } from '@codemirror/state';
 import JotxInternal from '/types/internal';
 import { buildVendors } from '../extensions';
-import { theme, lineWrapping, jotxe } from './extensions';
+import { theme, lineWrapping, jotxe, blockquote } from './extensions';
 
 /**
  * Create the vendor state
@@ -13,6 +13,13 @@ import { theme, lineWrapping, jotxe } from './extensions';
 export const makeState = ([state, setState]: JotxInternal.Store): JotxInternal.Vendor.State => {
   return EditorState.create({
     doc: state().options.doc,
-    extensions: [history(), theme(), jotxe(), lineWrapping(), ...buildVendors([state, setState])]
+    extensions: [
+      history(),
+      theme(),
+      jotxe(),
+      lineWrapping(),
+      blockquote(),
+      ...buildVendors([state, setState])
+    ]
   });
 };
