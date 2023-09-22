@@ -32,7 +32,7 @@ export const makeState = (
 };
 
 export const makeStore = (
-  options: Partial<Options>,
+  options: RecursivePartial<Options>,
   overrides: RecursivePartial<JotxInternal.State> = {}
 ): JotxInternal.Store => {
   const [state, setState] = createSignal(
