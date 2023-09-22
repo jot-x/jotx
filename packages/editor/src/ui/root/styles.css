@@ -1,0 +1,68 @@
+.jotxe {
+    border: 2px solid var(--jotxe-internal-block-background-color);
+    border-radius: var(--jotxe-internal-border-radius);
+    color: var(--jotxe-internal-color, inherit);
+    display: flex;
+    flex-direction: var(--jotxe-internal-flex-direction, column);
+  }
+  
+  .jotxe, .jotxe * {
+    box-sizing: border-box;
+  }
+  
+  .jotxe span {
+    display: inline-block;
+  }
+  
+  .jotxe,
+  .jotxe .jotx-editor {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-height: 0;
+  }
+  
+  .jotxe .jotx-editor {
+    overflow: auto;
+    padding: 0.5rem;
+  }
+  
+  .jotxe .jotxe-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  
+  .jotxe .cm-editor {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .jotxe .cm-scroller {
+    align-items: flex-start;
+    display: flex;
+    font-family: var(--jotxe-internal-font-family);
+    font-size: var(--jotxe-internal-editor-font-size);
+    line-height: var(--jotxe-internal-editor-line-height);
+    overflow-x: auto;
+    position: relative;
+  }
+  
+  .jotxe .cm-content {
+    display: block;
+    flex-grow: 2;
+    flex-shrink: 0;
+    margin: 0;
+    outline: none;
+    padding: 0;
+    white-space: pre;
+    word-wrap: normal;
+  }
+  
+  .jotxe .cm-line {
+    font-family: var(--jotxe-internal-font-family);
+    padding: 0;
+  }
+  

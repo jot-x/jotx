@@ -168,6 +168,11 @@ export const theme = (): Extension => {
 
 export const themeStyles = (state: JotxInternal.State): string[] => {
   const styles: JotxUI.Style[] = [
+    // general
+    { suffix: 'border-radius', default: '0.25rem' },
+    { suffix: 'color', default: 'currentColor' },
+    { suffix: 'flex-direction', default: 'column' },
+    { suffix: 'font-family', default: 'inherit' },
     // block
     { suffix: 'block-background-color', default: '#121212', light: '#f5f5f5' },
     { suffix: 'block-background-color-on-hover', default: '#0f0f0f', light: '#e0e0e0' },

@@ -3,6 +3,7 @@ import { type LanguageDescription } from '@codemirror/language';
 import { type MarkdownConfig } from '@lezer/markdown';
 import { type Extension } from '@codemirror/state';
 import type * as JotxeValues from './values';
+import { RecursivePartial } from './ts';
 
 export type Awaitable<T> = T & Promise<T>;
 export type AwaitableInstance = Awaitable<Instance>;
@@ -13,7 +14,12 @@ export type AwaitableInstance = Awaitable<Instance>;
  * Contains the application API such editing actions and lifecycle.
  */
 export interface Instance {
+  // destroys the instance
   destroy: () => void;
+  // focus the editor element
+  focus: () => void;
+  // reconfigure the instance
+  reconfigure: (updates: RecursivePartial<Options>) => void;
 }
 
 /**

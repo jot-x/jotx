@@ -1,2 +1,2 @@
 import { jotxe } from '@jotx/editor';
-jotxe(document.querySelector('#root')!);
+jotxe(document.querySelector('#app')!);

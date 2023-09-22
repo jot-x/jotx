@@ -18,7 +18,7 @@ export const Root: Component<{ store: JotxInternal.Store }> = () => {
   };
 
   return (
-    <div class="jotx jotxe" ref={setRoot} {...getHydrationMarkerProps()}>
+    <div class="jotxe" ref={setRoot} {...getHydrationMarkerProps()}>
       <Styles />
       <div class="jotx-editor">
         <Editor />

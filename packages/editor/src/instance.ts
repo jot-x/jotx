@@ -1,4 +1,4 @@
-import { destroy } from './api/destroy';
+import { destroy, focus, reconfigure } from './api';
 import JotxInternal from '/types/internal';
 import * as Jotx from '/types/jotx';
 import { awaitable } from '/src/utils/awaitable';
@@ -11,7 +11,9 @@ import { awaitable } from '/src/utils/awaitable';
  */
 export const makeInstance = (store: JotxInternal.Store): Jotx.AwaitableInstance => {
   const instance = {
-    destroy: destroy.bind(undefined, store)
+    destroy: destroy.bind(undefined, store),
+    focus: focus.bind(undefined, store),
+    reconfigure: reconfigure.bind(undefined, store)
   };
 
   return awaitable(instance, (resolve, reject) => {
