@@ -8,11 +8,22 @@
     "collaboration"
   ],
   "scripts": {
-    "test": "vitest"
+    "build": "turbo run build --filter=./packages/*",
+    "dev": "pnpm run --parallel --filter ./packages/coreui dev",
+    "test": "turbo run test --filter=./packages/*",
+    "typecheck": "turbo run typecheck --filter=./packages/*",
+    "format": "prettier --ignore-path .gitignore -w \"packages/**/*.{js,ts,json,css,tsx,jsx,md}\" \"playgrounds/**/*.{js,ts,json,css,tsx,jsx,md}\"",
+    "update-deps": "pnpm up -Lri"
   },
   "author": "Asaf Shakarzy <asaf000@gmail.com>",
   "license": "AGPL",
   "devDependencies": {
-    "prettier-plugin-tailwindcss": "^0.5.6"
+    "concurrently": "^8.2.1",
+    "tsup": "^7.2.0",
+    "tsup-preset-solid": "^2.1.0",
+    "turbo": "^1.10.15",
+    "vite": "^4.4.5",
+    "vite-plugin-solid": "^2.7.0",
+    "vitest": "^0.34.6"
   }
 }
