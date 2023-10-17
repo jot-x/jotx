@@ -9,11 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "solid-js": "^1.7.8",
-    "@jotx/coreui": "workspace:*"
+    "@jotx/coreui": "workspace:*",
+    "@phosphor-icons/web": "^2.0.3",
+    "solid-js": "^1.7.8"
   },
   "devDependencies": {
+    "@unocss/preset-uno": "^0.56.5",
+    "@unocss/preset-wind": "^0.56.5",
     "typescript": "^5.0.2",
+    "unocss": "^0.56.5",
     "vite": "^4.4.5",
     "vite-plugin-solid": "^2.7.0"
   }

@@ -1,5 +1,6 @@
 import { ComponentRegistry, useWorkspace, RenderTreeList } from '@jotx/coreui'
 import { ParentComponent } from 'solid-js'
+import '@jotx/coreui/dist/style.css'
 
 interface LayoutProps {
   componentRegistry: ComponentRegistry

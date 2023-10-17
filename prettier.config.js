@@ -1,5 +1,4 @@
 module.exports = {
-  plugins: ['prettier-plugin-tailwindcss'],
   arrowParens: 'always',
   htmlWhitespaceSensitivity: 'ignore',
   printWidth: 120,
@@ -9,4 +8,4 @@ module.exports = {
   trailingComma: 'all',
   useTabs: false,
   quoteProps: 'consistent',
-};
+}

@@ -2,17 +2,12 @@ import { JSX, Show, children, createSignal, splitProps } from 'solid-js'
 import { ResolvedJSXElement } from 'solid-js/types/reactive/signal'
 import { effect } from 'solid-js/web'
 import { useBusContext } from '../../../event-bus/context'
-import { Listen } from '../../../event-bus/types'
 import { useWorkspace } from '../../../workspace/context'
 import { ParentComponentWithID } from '../../parent-component-id'
-import { SectionDirection } from '../../types'
 import { TabOpts, Tabs } from '../tabs'
 import { Section, SectionProps } from './section'
 
 type Props = SectionProps & {
-  direction?: SectionDirection
-  listenToActivation: Listen<number>
-  children_ids: string[]
   active: string
   nav: boolean
   readonly: boolean

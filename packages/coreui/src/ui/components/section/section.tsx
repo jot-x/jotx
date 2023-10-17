@@ -1,4 +1,5 @@
 import { debounce } from '@solid-primitives/scheduled'
+import { clsx } from 'clsx'
 import { JSX, Show, createMemo, createSignal } from 'solid-js'
 import { effect } from 'solid-js/web'
 import { useSettings } from '../../../settings/context'
@@ -11,6 +12,7 @@ export type SectionProps = {
   resizable: boolean
   resizeSettingsPath?: string
   direction?: SectionDirection
+  minScreen?: 'sm' | 'md' | 'lg' | 'xl'
   class?: string
   style?: JSX.StyleHTMLAttributes<HTMLDivElement>
 }
@@ -89,21 +91,21 @@ export const Section: ParentComponentWithID<SectionProps> = (props) => {
     return {}
   })
 
-  // css`
-  //   div {
-  //     display: none;
-
-  //     @media (min-width: 1024px) {
-  //       display: flex;
-  //       flex-direction: ${props.direction || 'row'};
-  //       /*border: 1px red solid;*/
-  //       /*padding: 1.5rem 1rem 1.5rem 1rem;*/
-  //     }
-  //   }
-  // `
-
   return (
-    <div ref={setContainer} style={{ ...props.style, ...extra() }} class={`none lg:flex ${props.class || ""}`}>
+    <div
+      ref={setContainer}
+      style={{ ...props.style, ...extra() }}
+      class={clsx(
+        'text-primary',
+        !!props.minScreen ? 'hidden' : 'flex',
+        props.minScreen === 'sm' && 'sm:flex',
+        props.minScreen === 'md' && 'md:flex',
+        props.minScreen === 'lg' && 'lg:flex',
+        props.minScreen === 'xl' && 'xl:flex',
+        props.direction === 'column' ? 'flex-col' : 'flex-row',
+        props.class,
+      )}
+    >
       <Show when={props.resizable && props.handleLocation === 'start'}>
         <Resizer ref={resizer} isHorizontal={isHorizontal()} onResize={onResizeStart} />
       </Show>

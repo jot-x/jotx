@@ -1,18 +1,19 @@
 import { ParentComponent } from 'solid-js'
-import { Activation, BusContext, HubType, makeEventbusContext } from '../event-bus/context'
-import { createEventBus, createEventHub, createEventStack } from '../event-bus/factories'
-import { SettingsContext, makeSettingsContext } from '../settings/context'
-import { Settings } from '../settings/types'
-import { WorkspaceContext, makeWorkspaceContext } from '../workspace/context'
-import { TreeNode } from '../workspace/types'
-import { FileSystemContext, makeFilesystemContext } from '../filesystem/context'
+import { Activation, BusContext, HubType, makeEventbusContext } from './event-bus/context'
+import { createEventBus, createEventHub, createEventStack } from './event-bus/factories'
+import { SettingsContext, makeSettingsContext } from './settings/context'
+import { Settings } from './settings/types'
+import { WorkspaceContext, makeWorkspaceContext } from './workspace/context'
+import { TreeNode } from './workspace/types'
+import { FileSystemContext, makeFilesystemContext } from './filesystem/context'
+import { Toaster } from './ui/components/toaster'
 
-type Props = {
+export type ProvidersProps = {
   initialSettings: Settings[]
   initialTree: TreeNode
 }
 
-export const CoreProviders: ParentComponent<Props> = (props) => {
+export const CoreProviders: ParentComponent<ProvidersProps> = (props) => {
   const hub = createEventHub<HubType>({
     activation: createEventBus<Activation>(),
     new_tab: createEventBus<{ section_id: string }>(),
@@ -44,7 +45,10 @@ export const CoreProviders: ParentComponent<Props> = (props) => {
     <SettingsContext.Provider value={makeSettingsContext(props.initialSettings)}>
       <WorkspaceContext.Provider value={makeWorkspaceContext(props.initialTree)}>
         <BusContext.Provider value={makeEventbusContext(hub)}>
-          <FileSystemContext.Provider value={makeFilesystemContext()}>{props.children}</FileSystemContext.Provider>
+          <FileSystemContext.Provider value={makeFilesystemContext()}>
+            <Toaster />
+            {props.children}
+          </FileSystemContext.Provider>
         </BusContext.Provider>
       </WorkspaceContext.Provider>
     </SettingsContext.Provider>

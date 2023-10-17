@@ -53,8 +53,8 @@ export const Resizer: Component<{
       ref={setRef}
       class="hover:bg-brand-default flex items-center justify-center gap-2 border-slate-200"
       classList={{
-        'bg-brand-default dark:bg-brand-default': isDragging(),
-        'bg-slate-50 dark:bg-solid-darkbg/70': !isDragging(),
+        'bg-brand-default': isDragging(),
+        'bg-slate-50': !isDragging(),
         'flex-col cursor-col-resize border-l-2 border-r-2 w-[4px]': !props.isHorizontal,
         'flex-row cursor-row-resize border-t-2 border-b-2 h-[12px]': props.isHorizontal,
       }}
@@ -77,10 +77,9 @@ export const Resizer: Component<{
 const Dot: Component<{ isDragging: boolean }> = (props) => {
   return (
     <span
-      class="h-1 w-1 rounded-full bg-slate-300 dark:bg-white dark:group-hover:bg-slate-200"
+      class="h-1 w-1 rounded-full bg-slate-300"
       classList={{
         'bg-slate-200': props.isDragging,
-        'dark:bg-slate-200': props.isDragging,
       }}
     />
   )
