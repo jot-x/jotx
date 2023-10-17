@@ -10,9 +10,13 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    "import": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+    ".": {
+      "import": "./dist/dev.js",
+      "require": "./dist/dev.js"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
     }
   },
   "scripts": {
@@ -45,6 +49,7 @@
     "@solid-primitives/event-bus": "^1.0.8",
     "@solid-primitives/scheduled": "^1.4.1",
     "@solid-primitives/storage": "^2.1.1",
+    "@solidjs/router": "^0.8.3",
     "clsx": "^2.0.0",
     "solid-js": "^1.7.8"
   },

@@ -61,9 +61,11 @@ const tree: TreeNode = {
 
 function App() {
   return (
-    <CoreUI initialSettings={[]} initialTree={tree}>
-      <Layout componentRegistry={{}} />
-    </CoreUI>
+    <CoreUI
+      initialSettings={[]}
+      initialTree={tree}
+      initialRoutes={[{ path: '/:fs', component: () => <Layout componentRegistry={{}} /> }]}
+    />
   )
 }
 
