@@ -10,7 +10,7 @@ const ActivityButton: Component<{ icon: string; activation: Activation }> = (pro
   }
 
   return (
-    <button class="inline-block cursor-pointer bg-jotx-primary text-jotx-secondary" onClick={onClick}>
+    <button class="inline-block cursor-pointer bg-jotx-primary text-secondary" onClick={onClick}>
       <Icon icon={`ph:${props.icon}`} width="1.5rem" height="1.5rem" />
     </button>
   )

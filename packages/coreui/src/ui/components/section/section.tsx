@@ -95,7 +95,7 @@ export const Section: ParentComponent<SectionProps> = (props) => {
       ref={setContainer}
       style={{ ...props.style, ...extra() }}
       class={clsx(
-        'text-jotx-primary',
+        'text-primary',
         !!props.minScreen ? 'hidden' : 'flex',
         props.minScreen === 'sm' && 'sm:flex',
         props.minScreen === 'md' && 'md:flex',
