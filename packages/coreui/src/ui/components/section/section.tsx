@@ -3,8 +3,7 @@ import { clsx } from 'clsx'
 import { JSX, Show, createMemo, createSignal } from 'solid-js'
 import { effect } from 'solid-js/web'
 import { useSettings } from '../../../settings/context'
-import { ParentComponentWithID } from '../../parent-component-id'
-import { SectionDirection } from '../../types'
+import { ParentComponent, SectionDirection } from '../../types'
 import { Resizer } from './resizer'
 
 export type SectionProps = {
@@ -17,7 +16,7 @@ export type SectionProps = {
   style?: JSX.StyleHTMLAttributes<HTMLDivElement>
 }
 
-export const Section: ParentComponentWithID<SectionProps> = (props) => {
+export const Section: ParentComponent<SectionProps> = (props) => {
   const { getSetting, setSetting } = useSettings()
   // resize related
   //
@@ -96,7 +95,7 @@ export const Section: ParentComponentWithID<SectionProps> = (props) => {
       ref={setContainer}
       style={{ ...props.style, ...extra() }}
       class={clsx(
-        'text-primary',
+        'text-jotx-primary',
         !!props.minScreen ? 'hidden' : 'flex',
         props.minScreen === 'sm' && 'sm:flex',
         props.minScreen === 'md' && 'md:flex',

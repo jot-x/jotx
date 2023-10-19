@@ -8,12 +8,14 @@ const preset_options: preset.PresetOptions = {
     {
       // entries with '.tsx' extension will have `solid` export condition generated
       entry: 'src/index.ts',
+      dev_entry: true,
     },
+    // {
+    //   entry: 'src/style.css',
+    // },
   ],
-  // Set to `true` to remove all `console.*` calls and `debugger` statements in prod builds
+  // remove all `console.*` calls and `debugger` statements in prod builds
   drop_console: false,
-  // Set to `true` to generate a CommonJS build alongside ESM
-  cjs: false,
 }
 
 export default defineConfig((config) => {

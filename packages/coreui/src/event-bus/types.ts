@@ -26,3 +26,17 @@ export type EventStackConfig<E, V = E> = {
   readonly length?: number
   readonly toValue?: (event: E, stack: V[]) => V
 }
+
+export type TabActivation = {
+  type: 'tab'
+  section_id: string
+  component_id: string | undefined
+}
+
+export type ActionActivation = {
+  type: 'action'
+  action: string
+  component_id: string
+}
+
+export type Activation = TabActivation | ActionActivation

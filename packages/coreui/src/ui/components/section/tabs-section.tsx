@@ -3,7 +3,7 @@ import { ResolvedJSXElement } from 'solid-js/types/reactive/signal'
 import { effect } from 'solid-js/web'
 import { useBusContext } from '../../../event-bus/context'
 import { useWorkspace } from '../../../workspace/context'
-import { ParentComponentWithID } from '../../parent-component-id'
+import { ParentComponent } from '../../types'
 import { TabOpts, Tabs } from '../tabs'
 import { Section, SectionProps } from './section'
 
@@ -14,7 +14,7 @@ type Props = SectionProps & {
 }
 
 //Lays out its children one item at a time and hides the other with a vertical or horizontal direction
-const TabsSection: ParentComponentWithID<Props> = (props) => {
+const TabsSection: ParentComponent<Props> = (props) => {
   const [tabs, setTabs] = createSignal<TabOpts[]>([])
   const [active, setActive] = createSignal<string | undefined>(props.active, {
     equals: false,

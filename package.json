@@ -9,10 +9,10 @@
   ],
   "scripts": {
     "build": "turbo run build --filter=./packages/*",
-    "dev": "pnpm run --parallel --filter ./packages/coreui dev",
+    "dev": "pnpm run --parallel --filter=./packages/* --filter=./plugins/* dev",
     "test": "turbo run test --filter=./packages/*",
     "typecheck": "turbo run typecheck --filter=./packages/*",
-    "format": "prettier --ignore-path .gitignore -w \"packages/**/*.{js,ts,json,css,tsx,jsx,md}\"",
+    "format": "prettier --ignore-path .gitignore -w \"packages/**/*.{js,ts,json,css,tsx,jsx,md}\" \"plugins/**/*.{js,ts,json,css,tsx,jsx,md}\"",
     "update-deps": "pnpm up -Lri"
   },
   "author": "Asaf Shakarzy <asaf000@gmail.com>",

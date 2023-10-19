@@ -6,7 +6,8 @@ export default defineConfig({
   theme: {
     colors: {
       jotx: {
-        primary: 'hsl(0 0% 98%)',
+        primary: '#0f172a',
+        secondary: '#f4f4f5',
       },
     },
   },

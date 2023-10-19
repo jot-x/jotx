@@ -1,7 +1,7 @@
 import { children } from 'solid-js'
-import { ParentComponentWithID } from './parent-component-id'
+import { ParentComponent } from './types'
 
-export const InjectID: ParentComponentWithID = (props) => {
+export const InjectID: ParentComponent = (props) => {
   const c = children(() => props.children).toArray()
   if (c) {
     if (!c[0]) {

@@ -9,16 +9,6 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/dev.js",
-      "require": "./dist/dev.js"
-    },
-    "./dist/style.css": {
-      "import": "./dist/style.css",
-      "require": "./dist/style.css"
-    }
-  },
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
@@ -35,6 +25,11 @@
   "author": "Asaf Shakarzy <asaf000@gmail.com>",
   "license": "BSL",
   "devDependencies": {
+    "@felte/reporter-solid": "^1.2.9",
+    "@felte/solid": "^1.2.11",
+    "@iconify-icon/solid": "^1.0.8",
+    "@julr/unocss-preset-forms": "^0.0.5",
+    "@solid-primitives/keyboard": "^1.2.5",
     "@types/wicg-file-system-access": "^2023.10.1",
     "@unocss/cli": "^0.56.5",
     "@unocss/preset-uno": "^0.56.5",
@@ -46,6 +41,7 @@
     "unocss": "^0.56.5"
   },
   "dependencies": {
+    "@kobalte/core": "^0.11.0",
     "@solid-primitives/event-bus": "^1.0.8",
     "@solid-primitives/scheduled": "^1.4.1",
     "@solid-primitives/storage": "^2.1.1",
@@ -54,5 +50,17 @@
     "solid-js": "^1.7.8"
   },
   "browser": {},
+  "exports": {
+    "development": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/dev.js"
+      }
+    },
+    "import": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "typesVersions": {}
 }

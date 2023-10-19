@@ -1,5 +1,10 @@
 import { CoreUI, TreeNode } from '@jotx/coreui'
+import '@unocss/reset/tailwind.css'
 import 'virtual:uno.css'
+import './theme.css'
+import './app.css'
+import { registerPlugin } from './plugin/register'
+import ActivityButton from './ui/activity-button'
 import { Layout } from './ui/layout'
 
 const tree: TreeNode = {
@@ -10,17 +15,23 @@ const tree: TreeNode = {
   },
   children: [
     {
-      id: 'activity-bar',
+      id: 'activity-bar-section',
       name: 'Split',
       props: {
         minScreen: 'lg',
         direction: 'column',
-        style: {
-          'background-color': 'hsl(var(--primary))',
-          'padding': '1rem 0 1rem 0;',
-          'justify-content': 'space-between',
-        },
+        class: 'bg-jotx-primary justify-between p-2',
       },
+      children: [
+        {
+          id: 'activity-bar',
+          name: 'Split',
+        },
+        {
+          id: 'activity-bar-bottom',
+          name: 'Split',
+        },
+      ],
     },
     {
       id: 'primary-sidebar',
@@ -64,7 +75,16 @@ function App() {
     <CoreUI
       initialSettings={[]}
       initialTree={tree}
-      initialRoutes={[{ path: '/:fs', component: () => <Layout componentRegistry={{}} /> }]}
+      initialComponents={{ ActivityButton: ActivityButton }}
+      initialRoutes={[
+        {
+          plugin: '@jotx',
+          path: '/:fs',
+          component: () => <Layout />,
+        },
+      ]}
+      initialPlugins={['filesystems-setup']}
+      registerPlugin={registerPlugin}
     />
   )
 }

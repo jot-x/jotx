@@ -1,18 +1,5 @@
 import { createContext, createSignal, useContext } from 'solid-js'
-import { EventBus, EventHub, EventHubChannel, EventStack } from './types'
-
-type TabActivation = {
-  type: 'tab'
-  section_id: string
-  component_id: string | undefined
-}
-
-type ActionActivation = {
-  type: 'action'
-  component_id: string
-}
-
-export type Activation = TabActivation | ActionActivation
+import { Activation, EventBus, EventHub, EventHubChannel, EventStack } from './types'
 
 export interface HubType {
   activation: EventBus<Activation>

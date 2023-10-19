@@ -1,7 +1,11 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    "baseUrl": ".",
+    "paths": {
+      "@jotx/coreui": ["../../packages/coreui/src/index.ts"]
+    }
   },
-  "include": ["src/**/*"]
+  "include": ["./src/**/*"]
 }
