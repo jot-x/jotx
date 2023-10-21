@@ -1,6 +1,7 @@
 import { batch, createContext, createUniqueId, useContext } from 'solid-js'
 import { createStore } from 'solid-js/store'
 import { useWorkspace } from '../workspace/context'
+import { TreeNode } from '../workspace/types'
 import { IPlugin, PluginRegistration } from './types'
 
 export const makePluginsContext = (
@@ -15,10 +16,11 @@ export const makePluginsContext = (
       batch(() => {
         p.components.forEach((c) => addComponent(c.name, c.component))
         Object.keys(p.nodes).forEach((targetId) => {
-          const nodes = p.nodes[targetId]
-          if (nodes) {
-            const idnodes = nodes.map((n) => ({ ...n, id: createUniqueId() }))
-            if (!addTo(targetId, ...idnodes)) console.warn(`could not add node to to section ${targetId}`)
+          const nodesNoId = p.nodes[targetId]
+          const nodes: TreeNode[] = []
+          if (nodesNoId) {
+            nodesNoId.forEach((n) => (n.id ? nodes.push(n as TreeNode) : nodes.push({ ...n, id: createUniqueId() })))
+            if (!addTo(targetId, ...nodes)) console.warn(`could not add node to to section ${targetId}`)
           }
         })
       })
