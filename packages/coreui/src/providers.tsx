@@ -27,12 +27,8 @@ export const CoreProviders: ParentComponent<ProvidersProps> = (props) => {
   const hub = createEventHub<HubType>({
     activation: createEventBus<Activation>(),
     new_tab: createEventBus<{ section_id: string }>(),
-    content_change: createEventBus<{
-      component_id: string
-      path: string
-      value: string
-    }>(),
-    content_open: createEventBus<{
+    content: createEventBus<{
+      type: 'open' | 'change' | 'close'
       component_id: string
       path: string
       value: string

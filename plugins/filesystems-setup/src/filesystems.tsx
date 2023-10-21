@@ -12,8 +12,9 @@ import {
 } from '@jotx/coreui'
 import { For, ParentComponent, Show, createMemo, createSignal } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
-import { Type } from 'types'
+import { VFSSetup } from './setup/vfs'
 import { WAFSSetup } from './setup/waf'
+import { Type } from './types'
 
 const types: Type[] = [
   {
@@ -21,6 +22,12 @@ const types: Type[] = [
     title: 'Local Folder',
     icon: 'fa6-solid:laptop-code',
     component: WAFSSetup,
+  },
+  {
+    type: 'vfs',
+    title: 'VFS',
+    icon: 'fa6-solid:laptop-code',
+    component: VFSSetup,
   },
 ]
 

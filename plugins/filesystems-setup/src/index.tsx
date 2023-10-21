@@ -1,5 +1,6 @@
 import { PluginOptions } from '@jotx/coreui'
 import { FileSystems } from './filesystems'
+import { InitFileSystem } from './init'
 
 export const plugin = ({ addView, addComponent }: PluginOptions) => {
   addView('activity-bar-bottom', {
@@ -10,10 +11,13 @@ export const plugin = ({ addView, addComponent }: PluginOptions) => {
         action: 'open',
         component_id: 'filesystems-modal',
       },
-      icon: 'notebook',
+      icon: 'ph:notebook',
     },
   })
 
   addComponent('FileSystemsModal', FileSystems)
   addView('app', { name: 'FileSystemsModal' })
+
+  addComponent('InitFileSystem', InitFileSystem)
+  addView('invisible', { name: 'InitFileSystem' })
 }

@@ -1,4 +1,5 @@
 import { IRoute } from '../routing/types'
+import { Optional } from '../types'
 import { Component } from '../ui/types'
 import { TreeNode } from '../workspace/types'
 
@@ -12,7 +13,7 @@ export type IPlugin = {
 export type PluginRegistration = {
   components: PluginComponentDefinition[]
   routes: IRoute[]
-  nodes: Record<string, Omit<TreeNode, 'id'>[]>
+  nodes: Record<string, Optional<TreeNode, 'id'>[]>
 }
 
 export type PluginComponentDefinition = {
@@ -22,7 +23,7 @@ export type PluginComponentDefinition = {
 }
 
 export type PluginOptions = {
-  addComponent: (key: string, component: Component) => void
+  addComponent: (key: string, component: Component<any>) => void
   addRoute: (path: string, component: Component) => void
   addView: (targetId: string, ...nodes: Omit<TreeNode, 'id'>[]) => void
 }

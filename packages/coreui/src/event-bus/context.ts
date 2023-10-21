@@ -4,12 +4,8 @@ import { Activation, EventBus, EventHub, EventHubChannel, EventStack } from './t
 export interface HubType {
   activation: EventBus<Activation>
   new_tab: EventBus<{ section_id: string }>
-  content_change: EventBus<{
-    component_id: string
-    path: string
-    value: string
-  }>
-  content_open: EventBus<{
+  content: EventBus<{
+    type: 'open' | 'change' | 'close'
     component_id: string
     path: string
     value: string

@@ -2,10 +2,10 @@ import { createContext, useContext } from 'solid-js'
 import { createStore, modifyMutable, reconcile, unwrap } from 'solid-js/store'
 import { Component, ComponentRegistry } from '../ui/types'
 import { TreeNode } from './types'
-import { addToParent, getNodeById, removeChildById } from './utils'
+import { addToParent, getNodeById, removeChildById, updateNodeById as _updateNodeById } from './utils'
 
 export const makeWorkspaceContext = (initialTree: TreeNode, initialComponents: ComponentRegistry) => {
-  const [tree] = createStore(initialTree)
+  const [tree, setTree] = createStore(initialTree)
   const [components, setComponents] = createStore(initialComponents)
 
   const addTo = (targetId: string, ...node: TreeNode[]): boolean => {
@@ -14,6 +14,7 @@ export const makeWorkspaceContext = (initialTree: TreeNode, initialComponents: C
       modifyMutable(tree, reconcile(t))
       return true
     }
+    console.warn(`could not add node(s) to ${targetId}`)
     return false
   }
 
@@ -31,6 +32,12 @@ export const makeWorkspaceContext = (initialTree: TreeNode, initialComponents: C
     if (removed && updatedTree) modifyMutable(tree, reconcile(t))
   }
 
+  const updateNodeById = (nodeId: string, n: Partial<TreeNode>) => {
+    const t = JSON.parse(JSON.stringify(unwrap(tree)))
+    const { updated, tree: updatedTree } = _updateNodeById(t, nodeId, n)
+    if (updated && updatedTree) modifyMutable(tree, reconcile(t))
+  }
+
   return {
     tree,
     components,
@@ -38,6 +45,7 @@ export const makeWorkspaceContext = (initialTree: TreeNode, initialComponents: C
     addTo,
     findById,
     removeChildrenById,
+    updateNodeById,
   } as const
   // `as const` forces tuple type inference
 }

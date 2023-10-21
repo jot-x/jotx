@@ -20,15 +20,29 @@ const TabsSection: ParentComponent<Props> = (props) => {
     equals: false,
   })
   const [activeElement, setActiveElement] = createSignal<ResolvedJSXElement>()
-  const { removeChildrenById } = useWorkspace()
+  const { removeChildrenById, updateNodeById } = useWorkspace()
 
   // listen to activations
   const [bus] = useBusContext()
+
+  const activate = ({ section_id, component_id }: { section_id: string; component_id: string | undefined }) => {
+    console.log('ACTIVATING!')
+    setActive(component_id)
+    updateNodeById(section_id, {
+      props: {
+        active: component_id,
+      },
+    })
+  }
+
   bus().activation.listen((a) => {
-    if (a.type === 'tab' && a.section_id !== props.id) {
-      return
+    if (a.type === 'tab') {
+      if (a.section_id !== props.id) {
+        return
+      } else {
+        activate({ section_id: a.section_id, component_id: a.component_id })
+      }
     }
-    setActive(a.component_id)
   })
 
   const resolved = children(() => props.children)
@@ -63,7 +77,6 @@ const TabsSection: ParentComponent<Props> = (props) => {
           tabs={tabs()}
           active={active()}
           setActive={(value: string | undefined) => {
-            // setActive(value);
             bus().activation.emit({
               type: 'tab',
               section_id: other.id,
@@ -75,11 +88,19 @@ const TabsSection: ParentComponent<Props> = (props) => {
             const ts = tabs().find((t) => t.id === id)
             if (ts) {
               removeChildrenById(other.id, ts.id)
+              const _tabs = tabs()
+              if (_tabs.length) {
+                bus().activation.emit({
+                  type: 'tab',
+                  section_id: other.id,
+                  component_id: _tabs[_tabs.length - 1]?.id,
+                })
+              }
             }
           }}
         />
       </Show>
-      <Show when={activeElement}>
+      <Show when={activeElement()}>
         <div class="w-full">{activeElement()}</div>
       </Show>
     </Section>

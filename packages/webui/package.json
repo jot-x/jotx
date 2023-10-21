@@ -11,6 +11,9 @@
   "dependencies": {
     "@jotx/coreui": "workspace:*",
     "@jotx/filesystem-setup-plugin": "workspace:*",
+    "@jotx/file-explorer-plugin": "workspace:*",
+    "@jotx/markdown-plugin": "workspace:*",
+    "@jotx/statusbar-stats-plugin": "workspace:*",
     "solid-js": "^1.7.8"
   },
   "devDependencies": {
@@ -22,5 +25,7 @@
     "unocss": "^0.56.5",
     "vite": "^4.4.5",
     "vite-plugin-solid": "^2.7.0"
-  }
+  },
+  "author": "Asaf Shakarzy <asaf000@gmail.com>",
+  "license": "AGPL"
 }
