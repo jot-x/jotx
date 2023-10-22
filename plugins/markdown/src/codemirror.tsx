@@ -17,8 +17,7 @@ export const CodeMirror: Component<{
   const { editorView, ref: editorRef } = createCodeMirror({
     value: props.content,
     onValueChange: (value) =>
-      bus().content.emit({
-        type: 'change',
+      bus().content_change.emit({
         path: props.name,
         value,
         component_id: props.id,

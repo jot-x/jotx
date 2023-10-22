@@ -9,8 +9,10 @@ export function SidebarStats() {
   const [words, setWords] = createSignal(0)
   const [chars, setChars] = createSignal(0)
   const [bus] = useBusContext()
-  const { findById } = useWorkspace()
-  const [fs] = useFilesystem()
+
+  bus().content_change.listen(({ value }) => {
+    trigger(value)
+  })
 
   const trigger = debounce((value: string | undefined) => {
     if (value === undefined) {
