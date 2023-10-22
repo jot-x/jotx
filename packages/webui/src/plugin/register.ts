@@ -17,6 +17,8 @@ export const registerPlugin = async (id: string): Promise<PluginRegistration> =>
     p = await import('@jotx/markdown-plugin/src/index')
   } else if (id === 'statusbar-stats') {
     p = await import('@jotx/statusbar-stats-plugin/src/index')
+  } else if (id === 'autosave') {
+    p = await import('@jotx/autosave-plugin/src/index')
   }
 
   const mp = makePlugin(id)

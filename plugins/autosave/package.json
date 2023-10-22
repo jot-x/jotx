@@ -1,0 +1,18 @@
+{
+  "name": "@jotx/autosave-plugin",
+  "version": "0.0.1",
+  "description": "Core plugin to autosave modified files",
+  "main": "./src/index.jsx",
+  "type": "module",
+  "module": "./src/index.jsx",
+  "keywords": [
+    "jotx"
+  ],
+  "author": "Asaf Shakarzy <asaf000@gmail.com>",
+  "license": "AGPL",
+  "dependencies": {
+    "@jotx/coreui": "workspace:*",
+    "solid-js": "^1.7.8"
+  },
+  "browser": {}
+}

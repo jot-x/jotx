@@ -14,6 +14,7 @@
     "@jotx/file-explorer-plugin": "workspace:*",
     "@jotx/markdown-plugin": "workspace:*",
     "@jotx/statusbar-stats-plugin": "workspace:*",
+    "@jotx/autosave-plugin": "workspace:*",
     "solid-js": "^1.7.8"
   },
   "devDependencies": {

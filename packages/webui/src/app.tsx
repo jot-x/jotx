@@ -113,7 +113,7 @@ function App() {
           component: () => <Layout />,
         },
       ]}
-      initialPlugins={['filesystems-setup', 'file-explorer', 'markdown', 'statusbar-stats']}
+      initialPlugins={['filesystems-setup', 'file-explorer', 'markdown', 'statusbar-stats', 'autosave']}
       registerPlugin={registerPlugin}
     />
   )

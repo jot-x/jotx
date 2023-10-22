@@ -29,11 +29,19 @@ export const getPluginMetadata = (id: string) => {
     package: '@jotx/statusbar-stats-plugin',
   }
 
+  const autosave = {
+    id: 'autosave',
+    title: 'Autosave',
+    description: 'Autosave modified files',
+    package: '@jotx/autosave-plugin',
+  }
+
   const reg: Record<string, IPlugin> = {
     'filesystems-setup': fs_setup,
     'file-explorer': file_explorer,
     markdown,
     'statusbar-stats': statusbar_stats,
+    autosave,
   }
 
   return reg[id]!
