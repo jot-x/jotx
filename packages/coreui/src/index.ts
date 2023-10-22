@@ -1,18 +1,33 @@
 export { CoreUI } from './coreui'
 export { useBusContext } from './event-bus/context'
+export { useCurrentFileSystemName } from './filesystem/hooks'
 export { makePlugin } from './plugin'
 export { usePlugins } from './plugin/context'
 export type { IPlugin, PluginRegistration } from './plugin/types'
 export { useRouting } from './routing/context'
 export { useNavigate } from './routing/navigate-hook'
+export { useParams } from './routing/params-hook'
 export type { IRoute } from './routing/types'
 export { RenderTreeList } from './ui/render'
 export type { ComponentRegistry } from './ui/types'
 export { cn } from './ui/utils/css'
 export { useWorkspace } from './workspace/context'
 
+export { EDITOR_SECTION_ID } from './constants'
+
+export { open as openContent } from './plugin-utils/open'
+export { openFile } from './plugin-utils/open-file'
+
+export { debounce } from './plugin-utils/debounce'
+
+export { makeVirtualFileSystem } from './filesystem/adapter-vfs'
+export { makeWebAccessFileSystem } from './filesystem/adapter-web'
 export { useFilesystem } from './filesystem/context'
+export { getItemName as getFileSystemItemName } from './filesystem/tools'
+export type { AsyncFileSystem, SyncFileSystem } from './filesystem/types'
 export type { FileSystemDefinition, FileSystemType, VFSSettings, WafsSettings } from './filesystem/types-definition'
+
+export { useEditorActiveContent } from './plugin-utils/use-active-editor-content'
 
 export type { ActionActivation, Activation, TabActivation } from './event-bus/types'
 export type { PluginOptions } from './plugin/types'

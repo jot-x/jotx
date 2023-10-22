@@ -103,3 +103,45 @@ export function getNodeById(tree: TreeNode, targetId: string): TreeNode | undefi
 
   return result
 }
+
+export function updateNodeById(
+  tree: TreeNode,
+  targetId: string,
+  partialNode: Partial<TreeNode>,
+): { updated: boolean; tree: TreeNode } {
+  let result: TreeNode | undefined = undefined
+  let updated = false
+
+  function mergeObjects(target: any, source: any) {
+    for (const key in source) {
+      if (source.hasOwnProperty(key)) {
+        if (target[key] && typeof target[key] === 'object' && typeof source[key] === 'object') {
+          mergeObjects(target[key], source[key])
+        } else {
+          target[key] = source[key]
+        }
+      }
+    }
+  }
+
+  function traverse(node: TreeNode) {
+    if (node.id === targetId) {
+      mergeObjects(node, partialNode)
+      updated = true
+      return
+    }
+
+    if (node.children && node.children.length > 0) {
+      for (const child of node.children) {
+        traverse(child)
+        if (result) {
+          return
+        }
+      }
+    }
+  }
+
+  traverse(tree)
+
+  return { updated, tree }
+}

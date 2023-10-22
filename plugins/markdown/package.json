@@ -1,7 +1,7 @@
 {
-  "name": "@jotx/filesystem-setup-plugin",
+  "name": "@jotx/markdown-plugin",
   "version": "0.0.1",
-  "description": "Core plugin to manage filesystems",
+  "description": "Core plugin to edit markdown files",
   "main": "./src/index.jsx",
   "type": "module",
   "module": "./src/index.jsx",
@@ -12,11 +12,8 @@
   "license": "AGPL",
   "dependencies": {
     "@jotx/coreui": "workspace:*",
-    "dexie": "^3.2.4",
+    "solid-codemirror": "^2.3.0",
     "solid-js": "^1.7.8"
   },
-  "browser": {},
-  "devDependencies": {
-    "@types/wicg-file-system-access": "^2023.10.1"
-  }
+  "browser": {}
 }

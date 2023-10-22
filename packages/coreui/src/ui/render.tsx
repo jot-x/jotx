@@ -1,4 +1,4 @@
-import { Component, For, createMemo } from 'solid-js'
+import { Component, For, createEffect, createMemo } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
 import { useSettings } from '../settings/context'
 import { TreeNode } from '../workspace/types'
@@ -22,6 +22,10 @@ export const RenderTreeList: Component<{
   const componentRegistry = createMemo(() => {
     return { ...props.componentRegistry, ...baseRegistry }
   })
+
+  if (!componentRegistry()[props.node.name]) {
+    console.warn(`cannot render non existing component ${props.node.name}`)
+  }
 
   return (
     <InjectID id={props.node.id}>

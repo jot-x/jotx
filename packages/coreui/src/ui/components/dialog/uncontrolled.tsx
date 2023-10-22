@@ -1,7 +1,7 @@
 import { Dialog } from '@kobalte/core'
-import { useBusContext } from 'packages/coreui/src/event-bus/context'
 import { createSignal } from 'solid-js'
 import { Component } from '../../types'
+import { useBusContext } from '../../../event-bus/context'
 
 export const UncontrolledDialog: Component<Omit<Dialog.DialogRootProps, 'onOpenChange' | 'defaultOpen'>> = (props) => {
   const [open, setOpen] = createSignal(props.open || false)

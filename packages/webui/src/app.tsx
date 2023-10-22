@@ -20,7 +20,7 @@ const tree: TreeNode = {
       props: {
         minScreen: 'lg',
         direction: 'column',
-        class: 'bg-jotx-primary justify-between p-2',
+        class: 'bg-primary justify-between pt-4 pb-4 p-1',
       },
       children: [
         {
@@ -35,13 +35,24 @@ const tree: TreeNode = {
     },
     {
       id: 'primary-sidebar',
-      name: 'Tabs',
+      name: 'Split',
       props: {
         minScreen: 'lg',
         resizable: true,
         handleLocation: 'end',
         resizeSettingsPath: 'layout.primary_sidebar.size',
       },
+      children: [
+        {
+          id: 'explorer',
+          name: 'Tabs',
+          props: {
+            class: 'w-full',
+            direction: 'column',
+          },
+          children: [],
+        },
+      ],
     },
     {
       id: 'editor',
@@ -63,9 +74,28 @@ const tree: TreeNode = {
       },
     },
     {
-      id: 'status-bar',
+      id: 'status-bar-section',
       name: 'Split',
-      props: {},
+      props: {
+        class: 'justify-between fixed right-0 bottom-0 w-[100%] h-5 bg-secondary p-1 text-xs items-center',
+      },
+      children: [
+        {
+          id: 'status-bar-left',
+          name: 'Split',
+        },
+        {
+          id: 'status-bar',
+          name: 'Split',
+        },
+      ],
+    },
+    {
+      id: 'invisible',
+      name: 'Split',
+      props: {
+        class: 'hidden',
+      },
     },
   ],
 }
@@ -83,7 +113,7 @@ function App() {
           component: () => <Layout />,
         },
       ]}
-      initialPlugins={['filesystems-setup']}
+      initialPlugins={['filesystems-setup', 'file-explorer', 'markdown', 'statusbar-stats']}
       registerPlugin={registerPlugin}
     />
   )

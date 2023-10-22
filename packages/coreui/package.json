@@ -23,7 +23,7 @@
     "collaboration"
   ],
   "author": "Asaf Shakarzy <asaf000@gmail.com>",
-  "license": "BSL",
+  "license": "AGPL",
   "devDependencies": {
     "@felte/reporter-solid": "^1.2.9",
     "@felte/solid": "^1.2.11",

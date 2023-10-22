@@ -85,15 +85,13 @@ export const Tabs: ParentComponent<TabsProps> = (props) => {
 
     props.removeTab(name)
 
-    batch(() => {
-      // props.setTabs([...tabs.slice(0, idx), ...tabs.slice(idx + 1)]);
-      // We want to redirect to another tab if we are deleting the current one
-      if (tabs.length > 1 && props.active === tab.id) {
-        props.setActive(tabs[idx - 1]?.id)
-      } else {
-        props.setActive(undefined)
-      }
-    })
+    // props.setTabs([...tabs.slice(0, idx), ...tabs.slice(idx + 1)]);
+    // We want to redirect to another tab if we are deleting the current one
+    if (tabs.length > 1 && props.active === tab.id) {
+      props.setActive(tabs[idx - 1]?.id)
+    } else {
+      props.setActive(undefined)
+    }
   }
 
   const [edit, setEdit] = createSignal(-1)
