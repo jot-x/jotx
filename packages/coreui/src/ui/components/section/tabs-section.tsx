@@ -55,7 +55,8 @@ const TabsSection: ParentComponent<Props> = (props) => {
       .filter((e) => e instanceof HTMLElement)
       .map((el: JSX.Element) => ({
         id: (el as HTMLElement).id,
-        name: (el as HTMLElement).getAttribute('data-name')!,
+        key: (el as HTMLElement).getAttribute('data-key')!,
+        title: (el as HTMLElement).getAttribute('data-title')!,
       }))
     setTabs(tabs)
 
@@ -63,6 +64,8 @@ const TabsSection: ParentComponent<Props> = (props) => {
 
     if (actives.length === 1) {
       setActiveElement(actives[0])
+    } else {
+      setActiveElement(undefined)
     }
   })
 

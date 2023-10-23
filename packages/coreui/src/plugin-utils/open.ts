@@ -32,7 +32,7 @@ export function open({
     return
   }
 
-  const match = section.children?.filter((t) => t.props?.['name'] === key)
+  const match = section.children?.filter((t) => t.props?.['key'] === key)
   let id: string
 
   if (match && match.length > 0) {
@@ -53,7 +53,7 @@ export function open({
     addTo(section_id, {
       id,
       name: component,
-      props: { name: key, content: props['content'] },
+      props: { ...props, key },
     })
 
     // TODO this is a workaround that is required ONLY if we invoke this from a shortcut, god knows why

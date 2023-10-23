@@ -3,7 +3,8 @@ import { createCodeMirror, createEditorFocus } from 'solid-codemirror'
 
 export const CodeMirror: Component<{
   id: string
-  name: string
+  title: string
+  key: string
   content: string
 }> = (props) => {
   const [bus] = useBusContext()
@@ -18,7 +19,7 @@ export const CodeMirror: Component<{
     value: props.content,
     onValueChange: (value) =>
       bus().content_change.emit({
-        path: props.name,
+        path: props.key,
         value,
         component_id: props.id,
       }),
@@ -29,5 +30,5 @@ export const CodeMirror: Component<{
   })
 
   const { setFocused } = createEditorFocus(editorView)
-  return <div data-name={props.name} ref={editorRef}></div>
+  return <div data-title={props.title} data-key={props.key} ref={editorRef}></div>
 }

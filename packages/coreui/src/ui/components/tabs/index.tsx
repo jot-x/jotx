@@ -30,7 +30,8 @@ export const TabNavList: ParentComponent<{ class?: string }> = (props) => {
 
 export interface TabOpts {
   id: string
-  name: string
+  title: string
+  key: string
 }
 interface TabsProps {
   active?: string
@@ -100,7 +101,7 @@ export const Tabs: ParentComponent<TabsProps> = (props) => {
     <TabNavList>
       <For each={props.tabs}>
         {(tab, index) => (
-          <TabNavItem active={props.active === tab.name} class="mr-2">
+          <TabNavItem active={props.active === tab.key} class="mr-2">
             <div
               ref={(el) => tabRefs.set(index(), el)}
               contentEditable={edit() == index()}
@@ -131,11 +132,11 @@ export const Tabs: ParentComponent<TabsProps> = (props) => {
                 setEdit(index())
                 tabRefs.get(index())?.focus()
               }}
-              title={tab.name}
+              title={tab.title}
               role="button"
               tabindex="0"
             >
-              {tab.name}
+              {tab.title}
             </div>
             <Show when={!props.readonly && index() > -1}>
               <button
