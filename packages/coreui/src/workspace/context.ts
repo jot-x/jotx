@@ -1,8 +1,8 @@
 import { createContext, useContext } from 'solid-js'
 import { createStore, modifyMutable, reconcile, unwrap } from 'solid-js/store'
-import { Component, ComponentRegistry } from '../ui/types'
+import { AnyProps, Component, ComponentRegistry } from '../ui/types'
 import { TreeNode } from './types'
-import { addToParent, getNodeById, removeChildById, updateNodeById as _updateNodeById } from './utils'
+import { updateNodeById as _updateNodeById, addToParent, getNodeById, removeChildById } from './utils'
 
 export const makeWorkspaceContext = (initialTree: TreeNode, initialComponents: ComponentRegistry) => {
   const [tree, setTree] = createStore(initialTree)
@@ -18,7 +18,7 @@ export const makeWorkspaceContext = (initialTree: TreeNode, initialComponents: C
     return false
   }
 
-  const addComponent = (name: string, component: Component) => {
+  const addComponent = (name: string, component: Component<AnyProps>) => {
     const comps = JSON.parse(JSON.stringify(unwrap(components)))
     comps[name] = component
     setComponents(comps)
