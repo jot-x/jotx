@@ -30,43 +30,6 @@ export function openFile({ path, ws, bus, filesystem, section_id, component }: O
     section_id,
     component,
     rewrite: false,
-    props: { name: path, content },
+    props: { title: path, content },
   })
-}
-
-export function removeTab({
-  section_id,
-  tab_id,
-  ws,
-  bus,
-}: {
-  section_id: string
-  tab_id?: string | undefined
-  ws: WorkspaceContextType
-  bus: Accessor<EventHub<HubType>>
-}) {
-  // TODO THIS IS A BIT HACKY AS WE CAN'T DETERMINE ATM THE CURRENT ACTIVE TAB FROM THE WORKSPACE... SO WE GO TO THE DOM
-  tab_id = tab_id || document.getElementById(section_id)?.getAttribute('data-active') || undefined
-
-  if (!tab_id) {
-    return
-  }
-
-  const tabs = ws.findById(section_id)
-  if (!tabs || !tabs.children) {
-    return
-  }
-  const matchIdx = tabs.children.findIndex((t) => t.id === tab_id)
-
-  if (matchIdx > -1) {
-    const elid = tabs.children?.[matchIdx]?.id
-    if (elid) {
-      ws.removeChildrenById(section_id, elid)
-      bus().activation.emit({
-        type: 'tab',
-        section_id: section_id,
-        component_id: matchIdx > 0 ? elid : undefined,
-      })
-    }
-  }
 }

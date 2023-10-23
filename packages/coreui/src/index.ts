@@ -17,6 +17,7 @@ export { EDITOR_SECTION_ID } from './constants'
 
 export { open as openContent } from './plugin-utils/open'
 export { openFile } from './plugin-utils/open-file'
+export { removeTab } from './plugin-utils/remove-tab'
 
 export { debounce } from './plugin-utils/debounce'
 
