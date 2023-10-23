@@ -96,6 +96,12 @@ const tree: TreeNode = {
       props: {
         class: 'hidden',
       },
+      children: [
+        {
+          id: 'blank-page"',
+          name: 'BlankTabListener',
+        },
+      ],
     },
   ],
 }
