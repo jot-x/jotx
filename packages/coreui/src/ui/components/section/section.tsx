@@ -50,7 +50,7 @@ export const Section: ParentComponent<SectionProps> = (props) => {
     if (isHorizontal()) {
       throw Error('currently not supported')
     } else {
-      // TODO -2 is a hack that fixes resizing glitch
+      // TODO +3 is a hack that fixes resizing glitch
       position = rect.right - clientX - resizer.offsetWidth + 3
       // size = cont.offsetWidth - resizer.offsetWidth
     }
@@ -72,8 +72,8 @@ export const Section: ParentComponent<SectionProps> = (props) => {
     if (isHorizontal()) {
       throw Error('currently not supported')
     } else {
-      // TODO -2 is a hack that fixes resizing glitch
-      position = clientX - rect.left - resizer.offsetWidth - 2
+      // TODO +7 is a hack that fixes resizing glitch
+      position = clientX - rect.left - resizer.offsetWidth + 7
       // size = cont.offsetWidth - resizer.offsetWidth
     }
 

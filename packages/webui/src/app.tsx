@@ -20,7 +20,7 @@ const tree: TreeNode = {
       props: {
         minScreen: 'lg',
         direction: 'column',
-        class: 'bg-primary justify-between pt-4 pb-4 p-1',
+        class: 'bg-primary justify-between pt-4 pb-4 p-1 w-8',
       },
       children: [
         {
