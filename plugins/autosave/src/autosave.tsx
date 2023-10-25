@@ -1,5 +1,5 @@
 import { Icon, debounce, useBusContext, useFilesystem } from '@jotx/coreui'
-import { Show, createEffect, createSignal } from 'solid-js'
+import { Show, createSignal } from 'solid-js'
 
 export function AutoSave(props: { id: string }) {
   const [bus] = useBusContext()
