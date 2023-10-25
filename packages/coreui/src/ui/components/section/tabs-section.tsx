@@ -27,11 +27,14 @@ const TabsSection: ParentComponent<Props> = (props) => {
 
   const activate = ({ section_id, component_id }: { section_id: string; component_id: string | undefined }) => {
     setActive(component_id)
-    updateNodeById(section_id, {
-      props: {
-        active: component_id,
-      },
-    })
+    // TODO this is a hack specifically for undo/redo which comes not from a user UI action, without this the active element is not set into the DOM before the update occurs
+    setTimeout(() =>
+      updateNodeById(section_id, {
+        props: {
+          active: component_id,
+        },
+      }),
+    )
   }
 
   bus().activation.listen((a) => {

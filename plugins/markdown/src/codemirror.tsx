@@ -11,7 +11,10 @@ export const CodeMirror: Component<{
 
   bus().activation.listen((activation) => {
     if (activation.type === 'tab' && activation.section_id === 'editor' && activation.component_id === props.id) {
-      setFocused(true)
+      // TODO this is a hack specifically for undo/redo which comes not from a user UI action
+      setTimeout(() => {
+        setFocused(true)
+      })
     }
   })
 
