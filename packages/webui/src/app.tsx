@@ -3,9 +3,41 @@ import '@unocss/reset/tailwind.css'
 import 'virtual:uno.css'
 import './theme.css'
 import './app.css'
+import './cmd.css'
 import { registerPlugin } from './plugin/register'
 import ActivityButton from './ui/activity-button'
 import { Layout } from './ui/layout'
+import { Settings } from '@jotx/coreui/src/settings/types'
+import { UndoRedoCommands } from './undo-redo-commands'
+import { EditorCloseTabCommand } from './editor-close-tab-command'
+
+const initialSettings: Settings[] = [
+  {
+    title: 'Daily notes',
+    properties: {
+      'daily_notes.format': {
+        type: 'string',
+        default: 'YYYY-MM-DD',
+        description: 'Today file name format',
+      },
+    },
+  },
+  {
+    title: 'Layout',
+    properties: {
+      'layout.primary_sidebar.size': {
+        type: 'number',
+        default: 20,
+        description: '',
+      },
+      'layout.secondary_sidebar.size': {
+        type: 'number',
+        default: 20,
+        description: '',
+      },
+    },
+  },
+]
 
 const tree: TreeNode = {
   id: 'app',
@@ -109,7 +141,7 @@ const tree: TreeNode = {
 function App() {
   return (
     <CoreUI
-      initialSettings={[]}
+      initialSettings={initialSettings}
       initialTree={tree}
       initialComponents={{ ActivityButton: ActivityButton }}
       initialRoutes={[
@@ -119,6 +151,7 @@ function App() {
           component: () => <Layout />,
         },
       ]}
+      initialCommands={[UndoRedoCommands, EditorCloseTabCommand]}
       initialPlugins={['filesystems-setup', 'file-explorer', 'markdown', 'statusbar-stats', 'autosave']}
       registerPlugin={registerPlugin}
     />

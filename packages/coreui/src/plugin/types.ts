@@ -1,3 +1,4 @@
+import { CommandsComponentDefinition } from '../command/types'
 import { IRoute } from '../routing/types'
 import { Optional } from '../types'
 import { Component } from '../ui/types'
@@ -14,6 +15,7 @@ export type PluginRegistration = {
   components: PluginComponentDefinition[]
   routes: IRoute[]
   nodes: Record<string, Optional<TreeNode, 'id'>[]>
+  commands: CommandsComponentDefinition[]
 }
 
 export type PluginComponentDefinition = {
@@ -26,4 +28,5 @@ export type PluginOptions = {
   addComponent: (key: string, component: Component<any>) => void
   addRoute: (path: string, component: Component) => void
   addView: (targetId: string, ...nodes: Omit<TreeNode, 'id'>[]) => void
+  addCommand: (...defs: CommandsComponentDefinition[]) => void
 }

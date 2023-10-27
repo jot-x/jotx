@@ -56,6 +56,8 @@ export function open({
       props: { ...props, key },
     })
 
+    bus().content_open.emit({ type: 'open', section_id, component_id: id, key: key!, value: props.content })
+
     // TODO this is a workaround that is required ONLY if we invoke this from a shortcut, god knows why
     setTimeout(() => {
       bus().activation.emit({

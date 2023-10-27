@@ -1,19 +1,11 @@
 import { createContext, createSignal, useContext } from 'solid-js'
-import { Activation, EventBus, EventHub, EventHubChannel, EventStack } from './types'
+import { Activation, ContentEvent, EventBus, EventHub, EventHubChannel, EventStack } from './types'
 
 export interface HubType {
   activation: EventBus<Activation>
   new_tab: EventBus<{ section_id: string }>
-  content_change: EventBus<{
-    component_id: string
-    path: string
-    value: string
-  }>
-  content_open: EventBus<{
-    component_id: string
-    path: string
-    value: string
-  }>
+  content_change: EventBus<ContentEvent>
+  content_open: EventBus<ContentEvent>
   notifications: EventStack<
     string,
     {

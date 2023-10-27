@@ -40,3 +40,11 @@ export type ActionActivation = {
 }
 
 export type Activation = TabActivation | ActionActivation
+
+export type ContentEvent = {
+  type: 'open' | 'change'
+  section_id: string
+  component_id: string
+  key: string
+  value: string
+}

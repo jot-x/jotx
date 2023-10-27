@@ -3,6 +3,7 @@ import { createStore } from 'solid-js/store'
 import { useWorkspace } from '../workspace/context'
 import { TreeNode } from '../workspace/types'
 import { IPlugin, PluginRegistration } from './types'
+import { useCommands } from '../command/context'
 
 export const makePluginsContext = (
   initialPlugins: string[],
@@ -10,6 +11,7 @@ export const makePluginsContext = (
 ) => {
   const [plugins] = createStore<IPlugin[]>([])
   const { addTo, addComponent } = useWorkspace()
+  const { addCommand } = useCommands()
 
   const addPlugin = (id: string) => {
     registerPlugin(id).then((p) => {
@@ -23,6 +25,7 @@ export const makePluginsContext = (
             if (!addTo(targetId, ...nodes)) console.warn(`could not add node to to section ${targetId}`)
           }
         })
+        if (p.commands) addCommand(...p.commands)
       })
     })
     // TODO update store

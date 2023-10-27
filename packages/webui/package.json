@@ -9,12 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@jotx/autosave-plugin": "workspace:*",
     "@jotx/coreui": "workspace:*",
-    "@jotx/filesystem-setup-plugin": "workspace:*",
     "@jotx/file-explorer-plugin": "workspace:*",
+    "@jotx/filesystem-setup-plugin": "workspace:*",
     "@jotx/markdown-plugin": "workspace:*",
     "@jotx/statusbar-stats-plugin": "workspace:*",
-    "@jotx/autosave-plugin": "workspace:*",
+    "@solid-primitives/history": "^0.1.2",
     "solid-js": "^1.7.8"
   },
   "devDependencies": {

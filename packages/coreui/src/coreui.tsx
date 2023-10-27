@@ -1,5 +1,6 @@
 import { Route, Router, Routes } from '@solidjs/router'
 import { Component, For } from 'solid-js'
+import { PrimaryCommandsDialog } from './comands-dialog'
 import { CoreProviders, ProvidersProps } from './providers'
 import { useRouting } from './routing/context'
 
@@ -12,9 +13,11 @@ export const CoreUI: Component<Props> = (props) => {
       initialTree={props.initialTree}
       initialComponents={props.initialComponents}
       initialPlugins={props.initialPlugins}
+      initialCommands={props.initialCommands}
       initialRoutes={props.initialRoutes}
       registerPlugin={props.registerPlugin}
     >
+      <PrimaryCommandsDialog class="jotx" />
       <Router>
         <Routes>
           <RegisterRoutes />

@@ -28,6 +28,11 @@ export { getItemName as getFileSystemItemName } from './filesystem/tools'
 export type { AsyncFileSystem, SyncFileSystem } from './filesystem/types'
 export type { FileSystemDefinition, FileSystemType, VFSSettings, WafsSettings } from './filesystem/types-definition'
 
+export type { CommandsComponentDefinition } from './command/types'
+export type { Command } from './ui/components/commands-palette/types'
+export { Item as CommandItem } from './ui/components/commands-palette/item'
+export { createShortcut } from './plugin-utils/keyboard'
+
 export { useEditorActiveContent } from './plugin-utils/use-active-editor-content'
 
 export type { ActionActivation, Activation, TabActivation } from './event-bus/types'

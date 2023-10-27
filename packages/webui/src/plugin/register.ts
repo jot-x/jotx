@@ -28,5 +28,6 @@ export const registerPlugin = async (id: string): Promise<PluginRegistration> =>
     components: mp.components,
     nodes: mp.treeNodes,
     routes: mp.routes,
+    commands: mp.commands,
   }
 }

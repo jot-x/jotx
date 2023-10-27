@@ -3,7 +3,7 @@ export type SettingPropertyType = string | string[]
 export interface SettingProperty {
   type: SettingPropertyType
   default: any
-  value: any
+  value?: any
   description: string
   enum?: string[]
   enumDescriptions?: string[]
