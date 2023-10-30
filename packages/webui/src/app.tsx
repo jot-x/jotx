@@ -43,73 +43,82 @@ const tree: TreeNode = {
   id: 'app',
   name: 'Split',
   props: {
-    style: { height: '100%' },
+    class: 'flex-col h-full',
   },
   children: [
     {
-      id: 'activity-bar-section',
+      id: 'main',
       name: 'Split',
       props: {
-        minScreen: 'lg',
-        direction: 'column',
-        class: 'bg-primary justify-between pt-4 pb-4 p-1 w-8',
+        class: 'h-full',
       },
       children: [
         {
-          id: 'activity-bar',
+          id: 'activity-bar-section',
           name: 'Split',
+          props: {
+            minScreen: 'lg',
+            direction: 'column',
+            class: 'bg-primary justify-between pb-4 pt-4 pl-1 pr-1 w-8',
+          },
+          children: [
+            {
+              id: 'activity-bar',
+              name: 'Split',
+            },
+            {
+              id: 'activity-bar-bottom',
+              name: 'Split',
+            },
+          ],
         },
         {
-          id: 'activity-bar-bottom',
+          id: 'primary-sidebar',
           name: 'Split',
+          props: {
+            minScreen: 'lg',
+            resizable: true,
+            handleLocation: 'end',
+            resizeSettingsPath: 'layout.primary_sidebar.size',
+          },
+          children: [
+            {
+              id: 'explorer',
+              name: 'Tabs',
+              props: {
+                class: 'w-full',
+                direction: 'column',
+              },
+              children: [],
+            },
+          ],
         },
-      ],
-    },
-    {
-      id: 'primary-sidebar',
-      name: 'Split',
-      props: {
-        minScreen: 'lg',
-        resizable: true,
-        handleLocation: 'end',
-        resizeSettingsPath: 'layout.primary_sidebar.size',
-      },
-      children: [
         {
-          id: 'explorer',
+          id: 'editor',
           name: 'Tabs',
           props: {
-            class: 'w-full',
+            class: 'flex-1',
             direction: 'column',
+            nav: true,
           },
-          children: [],
+        },
+        {
+          id: 'secondary-sidebar',
+          name: 'Split',
+          props: {
+            minScreen: 'lg',
+            resizable: true,
+            handleLocation: 'start',
+            resizeSettingsPath: 'layout.secondary_sidebar.size',
+          },
         },
       ],
-    },
-    {
-      id: 'editor',
-      name: 'Tabs',
-      props: {
-        class: 'flex-1',
-        direction: 'column',
-        nav: true,
-      },
-    },
-    {
-      id: 'secondary-sidebar',
-      name: 'Split',
-      props: {
-        minScreen: 'lg',
-        resizable: true,
-        handleLocation: 'start',
-        resizeSettingsPath: 'layout.secondary_sidebar.size',
-      },
     },
     {
       id: 'status-bar-section',
       name: 'Split',
       props: {
-        class: 'justify-between fixed right-0 bottom-0 w-[100%] h-5 bg-secondary p-1 text-xs items-center',
+        class: 'justify-between w-[100%] h-5 bg-secondary p-1 text-xs items-center basis-8',
       },
       children: [
         {
