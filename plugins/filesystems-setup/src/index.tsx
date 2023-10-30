@@ -19,5 +19,5 @@ export const plugin = ({ addView, addComponent }: PluginOptions) => {
   addView('app', { name: 'FileSystemsModal' })
 
   addComponent('InitFileSystem', InitFileSystem)
-  addView('invisible', { name: 'InitFileSystem' })
+  addView('hidden', { name: 'InitFileSystem' })
 }

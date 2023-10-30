@@ -132,7 +132,7 @@ const tree: TreeNode = {
       ],
     },
     {
-      id: 'invisible',
+      id: 'hidden',
       name: 'Split',
       props: {
         class: 'hidden',
