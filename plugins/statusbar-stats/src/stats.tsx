@@ -1,4 +1,4 @@
-import { debounce, useBusContext, useEditorActiveContent, useFilesystem, useWorkspace } from '@jotx/coreui'
+import { debounce, useBusContext, useEditorActiveContent } from '@jotx/coreui'
 import { createEffect, createSignal } from 'solid-js'
 
 // matches a sequence of two or more non-whitespace characters as a word

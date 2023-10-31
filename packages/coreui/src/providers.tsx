@@ -11,6 +11,7 @@ import { RoutingContext, makeRoutingContext } from './routing/context'
 import { IRoute } from './routing/types'
 import { SettingsContext, makeSettingsContext } from './settings/context'
 import { Settings } from './settings/types'
+import { StyleContext, makeStyleContext } from './style/context'
 import { Toaster } from './ui/components/toaster'
 import { ComponentRegistry } from './ui/types'
 import { WorkspaceContext, makeWorkspaceContext } from './workspace/context'
@@ -47,21 +48,23 @@ export const CoreProviders: ParentComponent<ProvidersProps> = (props) => {
   })
 
   return (
-    <RoutingContext.Provider value={makeRoutingContext(props.initialRoutes)}>
-      <SettingsContext.Provider value={makeSettingsContext(props.initialSettings)}>
-        <WorkspaceContext.Provider value={makeWorkspaceContext(props.initialTree, props.initialComponents)}>
-          <BusContext.Provider value={makeEventbusContext(hub)}>
-            <FileSystemContext.Provider value={makeFilesystemContext()}>
-              <CommandsContext.Provider value={makeCommandsContext(props.initialCommands || [])}>
-                <PluginsContext.Provider value={makePluginsContext(props.initialPlugins || [], props.registerPlugin)}>
-                  <Toaster />
-                  {props.children}
-                </PluginsContext.Provider>
-              </CommandsContext.Provider>
-            </FileSystemContext.Provider>
-          </BusContext.Provider>
-        </WorkspaceContext.Provider>
-      </SettingsContext.Provider>
-    </RoutingContext.Provider>
+    <StyleContext.Provider value={makeStyleContext([])}>
+      <RoutingContext.Provider value={makeRoutingContext(props.initialRoutes)}>
+        <SettingsContext.Provider value={makeSettingsContext(props.initialSettings)}>
+          <WorkspaceContext.Provider value={makeWorkspaceContext(props.initialTree, props.initialComponents)}>
+            <BusContext.Provider value={makeEventbusContext(hub)}>
+              <FileSystemContext.Provider value={makeFilesystemContext()}>
+                <CommandsContext.Provider value={makeCommandsContext(props.initialCommands || [])}>
+                  <PluginsContext.Provider value={makePluginsContext(props.initialPlugins || [], props.registerPlugin)}>
+                    <Toaster />
+                    {props.children}
+                  </PluginsContext.Provider>
+                </CommandsContext.Provider>
+              </FileSystemContext.Provider>
+            </BusContext.Provider>
+          </WorkspaceContext.Provider>
+        </SettingsContext.Provider>
+      </RoutingContext.Provider>
+    </StyleContext.Provider>
   )
 }

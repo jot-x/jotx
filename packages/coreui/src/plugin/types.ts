@@ -1,3 +1,4 @@
+import { Component as SolidComponent } from 'solid-js'
 import { CommandsComponentDefinition } from '../command/types'
 import { IRoute } from '../routing/types'
 import { Optional } from '../types'
@@ -9,9 +10,11 @@ export type IPlugin = {
   title: string
   description: string
   package: string
+  registration: PluginRegistration
 }
 
 export type PluginRegistration = {
+  meta: IPlugin
   components: PluginComponentDefinition[]
   routes: IRoute[]
   nodes: Record<string, Optional<TreeNode, 'id'>[]>
@@ -26,7 +29,7 @@ export type PluginComponentDefinition = {
 
 export type PluginOptions = {
   addComponent: (key: string, component: Component<any>) => void
-  addRoute: (path: string, component: Component) => void
+  addRoute: (path: string, component: SolidComponent) => void
   addView: (targetId: string, ...nodes: Omit<TreeNode, 'id'>[]) => void
   addCommand: (...defs: CommandsComponentDefinition[]) => void
 }

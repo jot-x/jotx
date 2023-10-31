@@ -1,5 +1,6 @@
 export { CoreUI } from './coreui'
 export { useBusContext } from './event-bus/context'
+export type { HubType } from './event-bus/context'
 export { useCurrentFileSystemName } from './filesystem/hooks'
 export { makePlugin } from './plugin'
 export { usePlugins } from './plugin/context'
@@ -12,6 +13,8 @@ export { RenderTreeList } from './ui/render'
 export type { ComponentRegistry } from './ui/types'
 export { cn } from './ui/utils/css'
 export { useWorkspace } from './workspace/context'
+
+export { useStyles } from './style/context'
 
 export { EDITOR_SECTION_ID } from './constants'
 
@@ -29,11 +32,12 @@ export type { AsyncFileSystem, SyncFileSystem } from './filesystem/types'
 export type { FileSystemDefinition, FileSystemType, VFSSettings, WafsSettings } from './filesystem/types-definition'
 
 export type { CommandsComponentDefinition } from './command/types'
-export type { Command } from './ui/components/commands-palette/types'
-export { Item as CommandItem } from './ui/components/commands-palette/item'
 export { createShortcut } from './plugin-utils/keyboard'
+export { Item as CommandItem } from './ui/components/commands-palette/item'
+export type { Command } from './ui/components/commands-palette/types'
 
 export { useEditorActiveContent } from './plugin-utils/use-active-editor-content'
+export type { CSSPropery, CssStyles } from './style/types'
 
 export type { ActionActivation, Activation, TabActivation } from './event-bus/types'
 export type { PluginOptions } from './plugin/types'

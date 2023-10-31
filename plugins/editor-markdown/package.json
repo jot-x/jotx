@@ -1,0 +1,25 @@
+{
+  "name": "@jotx/editor-markdown-plugin",
+  "version": "0.0.1",
+  "description": "Core plugin to setup the editor with support for markdown",
+  "main": "./src/index.jsx",
+  "type": "module",
+  "module": "./src/index.jsx",
+  "keywords": [
+    "jotx"
+  ],
+  "author": "Asaf Shakarzy <asaf000@gmail.com>",
+  "license": "AGPL",
+  "dependencies": {
+    "@codemirror/lang-markdown": "^6.2.2",
+    "@codemirror/language": "^6.9.2",
+    "@codemirror/language-data": "^6.3.1",
+    "@codemirror/state": "^6.3.1",
+    "@codemirror/view": "^6.21.4",
+    "@jotx/coreui": "workspace:*",
+    "@jotx/editor": "workspace:*",
+    "@lezer/highlight": "^1.1.6",
+    "solid-js": "^1.7.8"
+  },
+  "browser": {}
+}

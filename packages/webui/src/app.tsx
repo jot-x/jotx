@@ -1,15 +1,15 @@
 import { CoreUI, TreeNode } from '@jotx/coreui'
+import { Settings } from '@jotx/coreui/src/settings/types'
+import { CodeMirror, CodeMirrorContext, makCodeMirrorContext } from '@jotx/editor'
 import '@unocss/reset/tailwind.css'
 import 'virtual:uno.css'
-import './theme.css'
 import './app.css'
 import './cmd.css'
+import { EditorCloseTabCommand } from './editor-close-tab-command'
 import { registerPlugin } from './plugin/register'
 import ActivityButton from './ui/activity-button'
 import { Layout } from './ui/layout'
-import { Settings } from '@jotx/coreui/src/settings/types'
 import { UndoRedoCommands } from './undo-redo-commands'
-import { EditorCloseTabCommand } from './editor-close-tab-command'
 
 const initialSettings: Settings[] = [
   {
@@ -152,7 +152,7 @@ function App() {
     <CoreUI
       initialSettings={initialSettings}
       initialTree={tree}
-      initialComponents={{ ActivityButton: ActivityButton }}
+      initialComponents={{ ActivityButton: ActivityButton, CodeMirror }}
       initialRoutes={[
         {
           plugin: '@jotx',
@@ -161,8 +161,17 @@ function App() {
         },
       ]}
       initialCommands={[UndoRedoCommands, EditorCloseTabCommand]}
-      initialPlugins={['filesystems-setup', 'file-explorer', 'markdown', 'statusbar-stats', 'autosave']}
+      initialPlugins={[
+        'filesystems-setup',
+        'file-explorer',
+        'editor-setup',
+        'editor-markdown',
+        'statusbar-stats',
+        'autosave',
+        'vercel-theme',
+      ]}
       registerPlugin={registerPlugin}
+      extraProviders={[[CodeMirrorContext, makCodeMirrorContext([], [])]]}
     />
   )
 }

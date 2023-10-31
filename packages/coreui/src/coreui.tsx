@@ -1,10 +1,20 @@
+import { MultiProvider } from '@solid-primitives/context'
 import { Route, Router, Routes } from '@solidjs/router'
-import { Component, For } from 'solid-js'
+import { Component, Context, ContextProviderComponent, FlowComponent, For } from 'solid-js'
 import { PrimaryCommandsDialog } from './comands-dialog'
 import { CoreProviders, ProvidersProps } from './providers'
 import { useRouting } from './routing/context'
+import { Styles } from './style/styles'
 
-type Props = ProvidersProps & {}
+type ExtraProvidersType<T extends readonly [unknown?, ...unknown[]]> = {
+  [K in keyof T]:
+    | readonly [Context<T[K]> | ContextProviderComponent<T[K]>, [T[K]][T extends unknown ? 0 : never]]
+    | FlowComponent
+}
+
+type Props = ProvidersProps & {
+  extraProviders: ExtraProvidersType<[any]>
+}
 
 export const CoreUI: Component<Props> = (props) => {
   return (
@@ -17,12 +27,15 @@ export const CoreUI: Component<Props> = (props) => {
       initialRoutes={props.initialRoutes}
       registerPlugin={props.registerPlugin}
     >
-      <PrimaryCommandsDialog class="jotx" />
-      <Router>
-        <Routes>
-          <RegisterRoutes />
-        </Routes>
-      </Router>
+      <MultiProvider values={props.extraProviders}>
+        <Styles />
+        <PrimaryCommandsDialog class="jotx" />
+        <Router>
+          <Routes>
+            <RegisterRoutes />
+          </Routes>
+        </Router>
+      </MultiProvider>
     </CoreProviders>
   )
 }

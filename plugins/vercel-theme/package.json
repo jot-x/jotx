@@ -1,7 +1,7 @@
 {
-  "name": "@jotx/markdown-plugin",
+  "name": "@jotx/vercel-theme-plugin",
   "version": "0.0.1",
-  "description": "Core plugin to edit markdown files",
+  "description": "Vercel styles theme",
   "main": "./src/index.jsx",
   "type": "module",
   "module": "./src/index.jsx",
@@ -12,7 +12,6 @@
   "license": "AGPL",
   "dependencies": {
     "@jotx/coreui": "workspace:*",
-    "solid-codemirror": "^2.3.0",
     "solid-js": "^1.7.8"
   },
   "browser": {}

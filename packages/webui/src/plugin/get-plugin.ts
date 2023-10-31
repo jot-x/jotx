@@ -15,11 +15,18 @@ export const getPluginMetadata = (id: string) => {
     package: '@jotx/file-explorer-plugin',
   }
 
-  const markdown = {
-    id: 'markdown',
-    title: 'Markdown Editor',
-    description: 'CodeMirror Markdown editor',
-    package: '@jotx/markdown-plugin',
+  const editor_setup = {
+    id: 'editor-setup',
+    title: 'Editor Setup',
+    description: 'The editor setup',
+    package: '@jotx/editor-setup-plugin',
+  }
+
+  const editor_markdown = {
+    id: 'editor-markdown',
+    title: 'Editor Markdown',
+    description: 'The editor markdown',
+    package: '@jotx/editor-markdown-plugin',
   }
 
   const statusbar_stats = {
@@ -36,12 +43,21 @@ export const getPluginMetadata = (id: string) => {
     package: '@jotx/autosave-plugin',
   }
 
+  const vercel_theme = {
+    id: 'vercel-theme',
+    title: 'Vercel Theme',
+    description: 'A Vercel styled theme',
+    package: '@jotx/vercel-theme-plugin',
+  }
+
   const reg: Record<string, IPlugin> = {
     'filesystems-setup': fs_setup,
     'file-explorer': file_explorer,
-    markdown,
+    'editor-setup': editor_setup,
     'statusbar-stats': statusbar_stats,
     autosave,
+    'vercel-theme': vercel_theme,
+    'editor-markdown': editor_markdown,
   }
 
   return reg[id]!

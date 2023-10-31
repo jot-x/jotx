@@ -1,7 +1,7 @@
 {
-  "name": "@jotx/coreui",
+  "name": "@jotx/editor",
   "version": "0.0.1",
-  "description": "Core UI - an extensible UI framework",
+  "description": "Jotx Editor",
   "files": [
     "dist"
   ],
@@ -24,32 +24,11 @@
   ],
   "author": "Asaf Shakarzy <asaf000@gmail.com>",
   "license": "AGPL",
-  "devDependencies": {
-    "@felte/reporter-solid": "^1.2.9",
-    "@felte/solid": "^1.2.11",
-    "@iconify-icon/solid": "^1.0.8",
-    "@julr/unocss-preset-forms": "^0.0.5",
-    "@solid-primitives/keyboard": "^1.2.5",
-    "@types/wicg-file-system-access": "^2023.10.1",
-    "@unocss/cli": "^0.56.5",
-    "@unocss/preset-uno": "^0.56.5",
-    "esbuild": "^0.19.4",
-    "fs-extra": "^11.1.1",
-    "jiti": "^1.20.0",
-    "pnpm": "^8.9.2",
-    "tslib": "^2.6.2",
-    "unocss": "^0.56.5"
-  },
   "dependencies": {
-    "@kobalte/core": "^0.11.0",
-    "@solid-primitives/context": "^0.2.1",
-    "@solid-primitives/event-bus": "^1.0.8",
-    "@solid-primitives/scheduled": "^1.4.1",
-    "@solid-primitives/storage": "^2.1.1",
-    "@solidjs/router": "^0.8.3",
-    "clsx": "^2.0.0",
+    "@codemirror/state": "^6.3.1",
+    "@codemirror/view": "^6.21.4",
     "solid-js": "^1.7.8",
-    "solid-react-hooks": "^0.4.0"
+    "@jotx/coreui": "workspace:*"
   },
   "browser": {},
   "exports": {

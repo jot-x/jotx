@@ -1,20 +1,22 @@
 import { batch, createContext, createUniqueId, useContext } from 'solid-js'
 import { createStore } from 'solid-js/store'
+import { useCommands } from '../command/context'
 import { useWorkspace } from '../workspace/context'
 import { TreeNode } from '../workspace/types'
 import { IPlugin, PluginRegistration } from './types'
-import { useCommands } from '../command/context'
 
 export const makePluginsContext = (
   initialPlugins: string[],
   registerPlugin: (id: string) => Promise<PluginRegistration>,
 ) => {
-  const [plugins] = createStore<IPlugin[]>([])
+  const [plugins, setPlugins] = createStore<IPlugin[]>([])
+
   const { addTo, addComponent } = useWorkspace()
   const { addCommand } = useCommands()
 
   const addPlugin = (id: string) => {
     registerPlugin(id).then((p) => {
+      setPlugins((prev) => [...prev, { ...p.meta, registration: p }])
       batch(() => {
         p.components.forEach((c) => addComponent(c.name, c.component))
         Object.keys(p.nodes).forEach((targetId) => {
@@ -39,7 +41,7 @@ export const makePluginsContext = (
     addPlugin(pid)
   })
 
-  return { addPlugin, removePlugin }
+  return { plugins, addPlugin, removePlugin }
 }
 
 export type PluginsContextType = ReturnType<typeof makePluginsContext>

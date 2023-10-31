@@ -11,9 +11,11 @@ export function AutoSave(props: { id: string }) {
     setWriting(false)
   }, 500)
 
-  bus().content_change.listen(({ path, value }) => {
-    setWriting(true)
-    triggerWriteFile(path, value)
+  bus().content_change.listen((event) => {
+    if (event.type === 'change') {
+      setWriting(true)
+      triggerWriteFile(event.key, event.value)
+    }
   })
 
   return (
